@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 <style>
   :root {
     --bg: #060c16;
@@ -1167,7 +1168,7 @@
         <div class="form-row">
           <div class="field">
             <label>First Name</label>
-            <input type="text" placeholder="Ahmed" id="fname">
+            <input type="text" placeholder="John" id="fname">
           </div>
           <div class="field">
             <label>Last Name</label>
@@ -1209,6 +1210,10 @@
           <label>Tell Us About Your Biggest Bottleneck</label>
           <textarea placeholder="e.g. We miss leads after hours, booking is all manual, our team spends hours on admin..." id="message"></textarea>
         </div>
+        <!-- Honeypot anti-spam (bots fill this, humans don't see it) -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <!-- hCaptcha human check -->
+        <div class="h-captcha" data-sitekey="10000000-ffff-ffff-ffff-000000000001" data-theme="dark" style="margin-bottom:8px;"></div>
         <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
         <p class="form-note">We reply within 24 hours. No spam, ever.</p>
       </div>
@@ -1307,6 +1312,8 @@
     const tier  = document.getElementById('tier').value;
     const msg   = document.getElementById('message').value.trim();
     if (!fname || !email) { alert('Please fill in at least your name and email.'); return; }
+    const htoken = document.querySelector('[name="h-captcha-response"]')?.value;
+    if (!htoken) { alert('Please complete the human verification check.'); return; }
     const btn = document.querySelector('.form-submit');
     btn.textContent = 'Sending...';
     btn.disabled = true;
@@ -1314,7 +1321,7 @@
       const res = await fetch('https://formspree.io/f/xaqlenvp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name: fname + ' ' + lname, email, business: biz, industry: ind, tier, message: msg })
+        body: JSON.stringify({ name: fname + ' ' + lname, email, business: biz, industry: ind, tier, message: msg, 'h-captcha-response': htoken })
       });
       if (res.ok) {
         document.getElementById('contactForm').style.display = 'none';
