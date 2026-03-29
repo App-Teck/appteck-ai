@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60">
+  <rect x="0" y="0" width="60" height="60" rx="14" fill="#0066FF"/>
+  <circle cx="30" cy="30" r="6" fill="white"/>
+  <circle cx="30" cy="10" r="3.5" fill="white" opacity="0.95"/>
+  <circle cx="50" cy="30" r="3.5" fill="white" opacity="0.95"/>
+  <circle cx="30" cy="50" r="3.5" fill="white" opacity="0.95"/>
+  <circle cx="10" cy="30" r="3.5" fill="white" opacity="0.95"/>
+  <line x1="30" y1="24" x2="30" y2="14" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <line x1="36" y1="30" x2="46" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <line x1="30" y1="36" x2="30" y2="46" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <line x1="24" y1="30" x2="14" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <line x1="33" y1="27" x2="45" y2="15" stroke="white" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+  <line x1="33" y1="33" x2="45" y2="45" stroke="white" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+  <line x1="27" y1="33" x2="15" y2="45" stroke="white" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+  <line x1="27" y1="27" x2="15" y2="15" stroke="white" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+  <circle cx="45" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+  <circle cx="45" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+  <circle cx="15" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+  <circle cx="15" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+</svg>
