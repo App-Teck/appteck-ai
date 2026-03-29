@@ -1311,7 +1311,7 @@
     btn.textContent = 'Sending...';
     btn.disabled = true;
     try {
-      const res = await fetch('https://formspree.io/f/REPLACE_WITH_YOUR_ID', {
+      const res = await fetch('https://formspree.io/f/xaqlenvp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ name: fname + ' ' + lname, email, business: biz, industry: ind, tier, message: msg })
