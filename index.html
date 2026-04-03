@@ -1159,7 +1159,7 @@
       <h2>Ready to Automate?<br>Let's Start With<br>a Conversation.</h2>
       <p>Tell us what you're working on. No pitch deck, no tech jargon. Just a straight conversation about what AI can do for your business.</p>
       <div class="contact-detail"><div class="icon">📍</div>Melbourne, Victoria, Australia</div>
-      <div class="contact-detail"><div class="icon">✉️</div>sales@appteck.ai</div>
+      <div class="contact-detail"><div class="icon">✉️</div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5c6d4d9d0c6f5d4c5c5c1d0d6de9bd4dc">[email&#160;protected]</a></div>
       <a href="https://cal.com/appteck" target="_blank" class="booking-btn" id="bookingBtn">📅 Book a 30-Min Discovery Call</a>
     </div>
     <div>
@@ -1280,7 +1280,7 @@
   </button>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── SCROLL REVEAL ──
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
@@ -1311,12 +1311,20 @@
     btn.textContent = 'Sending...';
     btn.disabled = true;
     try {
-      const res = await fetch('https://hooks.appteck.ai/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ name: fname + ' ' + lname, email, business: biz, industry: ind, tier, message: msg })
-      });
-      if (res.ok) {
+      const payload = JSON.stringify({ name: fname + ' ' + lname, email, business: biz, industry: ind, tier, message: msg });
+      const [res1, res2] = await Promise.all([
+        fetch('https://formspree.io/f/mzdkeznw', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: payload
+        }),
+        fetch('https://leads.appteck.ai/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload
+        })
+      ]);
+      if (res1.ok || res2.ok) {
         document.getElementById('contactForm').style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
       } else {
@@ -1397,7 +1405,7 @@
     setTimeout(() => { t.remove(); addMsg('bot', getResponse(text)); }, 1000 + Math.random() * 600);
   }
 
-  function sendQuick(text) {
+    function sendQuick(text) {
     addMsg('user', text);
     document.getElementById('quickReplies').style.display = 'none';
     const t = showTyping();
