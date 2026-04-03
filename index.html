@@ -1311,7 +1311,7 @@
     btn.textContent = 'Sending...';
     btn.disabled = true;
     try {
-      const res = await fetch('https://formspree.io/f/mzdkeznw', {
+      const res = await fetch('https://hooks.appteck.ai/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({ name: fname + ' ' + lname, email, business: biz, industry: ind, tier, message: msg })
