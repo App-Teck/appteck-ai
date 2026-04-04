@@ -1,954 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AppTeck.ai — AI Agents That Run Your Business</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #060c16;
-    --surface: #0d1825;
-    --card: #111f30;
-    --border: rgba(0,140,255,0.15);
-    --blue: #0066ff;
-    --blue-glow: rgba(0,102,255,0.25);
-    --teal: #00d4ff;
-    --white: #f0f6ff;
-    --muted: #6b8aaa;
-    --green: #00e882;
-    --amber: #ffb800;
-    --red: #ff4d6a;
-    --font-head: 'Space Grotesk', sans-serif;
-    --font-body: 'Space Grotesk', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── GRID BACKGROUND ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,102,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,102,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  section, nav, footer { position: relative; z-index: 1; }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 6%;
-    background: rgba(6,12,22,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo {
-    font-family: var(--font-head);
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--white);
-    text-decoration: none;
-    letter-spacing: -0.5px;
-  }
-  .logo span { color: var(--blue); }
-
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-cta {
-    background: var(--blue);
-    color: #fff !important;
-    padding: 10px 22px;
-    border-radius: 6px;
-    font-weight: 600 !important;
-    font-size: 0.88rem !important;
-    transition: background 0.2s, transform 0.15s !important;
-  }
-  .nav-cta:hover { background: #0052cc !important; transform: translateY(-1px); }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 6% 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-glow {
-    position: absolute;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(0,102,255,0.18) 0%, transparent 70%);
-    top: -100px; right: -100px;
-    pointer-events: none;
-  }
-  .hero-glow-2 {
-    position: absolute;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 70%);
-    bottom: 50px; left: 10%;
-    pointer-events: none;
-  }
-
-  .hero-inner { max-width: 760px; }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0,102,255,0.1);
-    border: 1px solid rgba(0,102,255,0.3);
-    border-radius: 100px;
-    padding: 6px 16px;
-    font-size: 0.8rem;
-    color: var(--teal);
-    font-weight: 500;
-    margin-bottom: 28px;
-    letter-spacing: 0.5px;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--green);
-    border-radius: 50%;
-    box-shadow: 0 0 6px var(--green);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.3)} }
-
-  h1 {
-    font-family: var(--font-head);
-    font-size: clamp(2.6rem, 6vw, 4.2rem);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -1.5px;
-    margin-bottom: 24px;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-
-  h1 .accent { color: var(--blue); }
-  h1 .accent-teal { color: var(--teal); }
-
-  .hero-sub {
-    font-size: 1.15rem;
-    color: var(--muted);
-    max-width: 560px;
-    margin-bottom: 40px;
-    font-weight: 300;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .hero-ctas {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
-
-  .btn-primary {
-    background: var(--blue);
-    color: #fff;
-    padding: 14px 30px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-  }
-  .btn-primary:hover { background: #0052cc; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,102,255,0.4); }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--white);
-    padding: 14px 30px;
-    border-radius: 8px;
-    font-weight: 500;
-    font-size: 0.95rem;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    transition: all 0.2s;
-    display: inline-block;
-  }
-  .btn-ghost:hover { border-color: rgba(0,102,255,0.5); background: rgba(0,102,255,0.08); }
-
-  /* ── STAT STRIP ── */
-  .stats-strip {
-    display: flex;
-    gap: 0;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-top: 64px;
-    overflow: hidden;
-    animation: fadeUp 0.6s 0.4s ease both;
-    background: var(--surface);
-  }
-
-  .stat {
-    flex: 1;
-    padding: 22px 28px;
-    border-right: 1px solid var(--border);
-    text-align: center;
-  }
-  .stat:last-child { border-right: none; }
-
-  .stat-num {
-    font-family: var(--font-head);
-    font-size: 1.9rem;
-    font-weight: 800;
-    color: var(--blue);
-    display: block;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
-
-  /* ── SECTIONS ── */
-  section { padding: 96px 6%; }
-
-  .section-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--blue);
-    font-weight: 600;
-    margin-bottom: 14px;
-  }
-
-  h2 {
-    font-family: var(--font-head);
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    font-weight: 800;
-    letter-spacing: -1px;
-    line-height: 1.15;
-    margin-bottom: 20px;
-  }
-
-  .section-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    max-width: 560px;
-    margin-bottom: 56px;
-    font-weight: 300;
-  }
-
-  /* ── SERVICES ── */
-  #services { background: var(--surface); }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5px;
-    background: var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  .service-card {
-    background: var(--card);
-    padding: 40px 36px;
-    transition: background 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--blue), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .service-card:hover { background: #162236; }
-  .service-card:hover::before { opacity: 1; }
-
-  .service-num {
-    font-family: var(--font-head);
-    font-size: 0.75rem;
-    color: var(--blue);
-    font-weight: 700;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-  }
-
-  .service-icon {
-    font-size: 2rem;
-    margin-bottom: 16px;
-    display: block;
-  }
-
-  .service-card h3 {
-    font-family: var(--font-head);
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    letter-spacing: -0.3px;
-  }
-
-  .service-card p {
-    color: var(--muted);
-    font-size: 0.92rem;
-    line-height: 1.65;
-  }
-
-  .service-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 20px;
-  }
-
-  .tag {
-    background: rgba(0,102,255,0.08);
-    border: 1px solid rgba(0,102,255,0.2);
-    color: var(--teal);
-    font-size: 0.72rem;
-    padding: 4px 12px;
-    border-radius: 100px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-  }
-
-  /* ── PRICING ── */
-  #pricing { background: var(--bg); }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .pricing-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 40px 36px;
-    position: relative;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .pricing-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
-  }
-
-  .pricing-card.featured {
-    border-color: var(--blue);
-    box-shadow: 0 0 40px rgba(0,102,255,0.2);
-  }
-
-  .pricing-card.featured::before {
-    content: 'MOST POPULAR';
-    position: absolute;
-    top: -12px; left: 50%;
-    transform: translateX(-50%);
-    background: var(--blue);
-    color: #fff;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    padding: 4px 16px;
-    border-radius: 100px;
-  }
-
-  .tier-badge {
-    display: inline-block;
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    margin-right: 8px;
-  }
-
-  .tier-name {
-    font-family: var(--font-head);
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-  }
-
-  .setup-price {
-    font-family: var(--font-head);
-    font-size: 2.8rem;
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -1px;
-    margin-bottom: 4px;
-  }
-
-  .setup-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-  .retainer {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(0,232,130,0.08);
-    border: 1px solid rgba(0,232,130,0.2);
-    color: var(--green);
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 100px;
-    margin: 16px 0 28px;
-  }
-
-  .no-lock {
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .no-lock::before { content: '✓'; color: var(--green); font-weight: 700; }
-
-  .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 24px; }
-
-  .features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-  .features li {
-    font-size: 0.88rem;
-    color: var(--muted);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    line-height: 1.5;
-  }
-  .features li::before {
-    content: '→';
-    color: var(--blue);
-    font-weight: 700;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .pricing-cta {
-    display: block;
-    text-align: center;
-    padding: 13px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: 1px solid var(--border);
-    color: var(--white);
-  }
-
-  .pricing-cta:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-1px); }
-  .featured .pricing-cta { background: var(--blue); border-color: var(--blue); }
-  .featured .pricing-cta:hover { background: #0052cc; }
-
-  /* ── PROCESS ── */
-  #process { background: var(--surface); }
-
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    position: relative;
-  }
-
-  .process-steps::before {
-    content: '';
-    position: absolute;
-    top: 44px;
-    left: 15%;
-    right: 15%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--blue), var(--teal), var(--blue), transparent);
-    opacity: 0.4;
-  }
-
-  .step {
-    padding: 0 24px;
-    text-align: center;
-    position: relative;
-  }
-
-  .step-num {
-    width: 48px; height: 48px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-    font-family: var(--font-head);
-    font-size: 0.85rem;
-    font-weight: 800;
-    color: var(--blue);
-    position: relative;
-    z-index: 1;
-  }
-
-  .step h3 {
-    font-family: var(--font-head);
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    letter-spacing: -0.3px;
-  }
-
-  .step p { font-size: 0.87rem; color: var(--muted); line-height: 1.6; }
-
-  /* ── FAQ ── */
-  #faq { background: var(--bg); }
-
-  .faq-grid { max-width: 760px; margin: 0 auto; }
-
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .faq-q {
-    width: 100%;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 24px 0;
-    text-align: left;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    transition: color 0.2s;
-  }
-
-  .faq-q:hover { color: var(--teal); }
-
-  .faq-icon {
-    width: 24px; height: 24px;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 1.1rem;
-    color: var(--blue);
-    transition: transform 0.3s;
-  }
-
-  .faq-item.open .faq-icon { transform: rotate(45deg); }
-
-  .faq-a {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    color: var(--muted);
-    font-size: 0.93rem;
-    line-height: 1.75;
-    padding: 0;
-  }
-
-  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 24px; }
-
-  /* ── CONTACT ── */
-  #contact { background: var(--surface); }
-
-  .contact-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-    max-width: 1080px;
-    margin: 0 auto;
-  }
-
-  .contact-info h2 { margin-bottom: 16px; }
-  .contact-info p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 32px; }
-
-  .contact-detail {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 14px;
-    font-size: 0.9rem;
-    color: var(--muted);
-  }
-
-  .contact-detail .icon {
-    width: 36px; height: 36px;
-    background: rgba(0,102,255,0.1);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-
-  .booking-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0,232,130,0.08);
-    border: 1px solid rgba(0,232,130,0.25);
-    color: var(--green);
-    padding: 12px 22px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-    margin-top: 8px;
-  }
-  .booking-btn:hover { background: rgba(0,232,130,0.15); transform: translateY(-1px); }
-
-  /* ── FORM ── */
-  .contact-form { display: flex; flex-direction: column; gap: 16px; }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
-  .field { display: flex; flex-direction: column; gap: 6px; }
-  .field label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
-
-  .field input, .field select, .field textarea {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--white);
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-family: var(--font-body);
-    font-size: 0.92rem;
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-  }
-
-  .field input:focus, .field select:focus, .field textarea:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(0,102,255,0.1);
-  }
-
-  .field select { appearance: none; cursor: pointer; }
-  .field textarea { resize: vertical; min-height: 100px; }
-
-  .field option { background: var(--card); }
-
-  .form-submit {
-    background: var(--blue);
-    color: #fff;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    align-self: flex-start;
-  }
-  .form-submit:hover { background: #0052cc; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,102,255,0.3); }
-
-  .form-note { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
-
-  /* ── CHAT WIDGET ── */
-  .chat-bubble {
-    position: fixed;
-    bottom: 28px; right: 28px;
-    z-index: 200;
-  }
-
-  .chat-toggle {
-    width: 58px; height: 58px;
-    background: var(--blue);
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    box-shadow: 0 4px 24px rgba(0,102,255,0.5);
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-  }
-
-  .chat-toggle:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(0,102,255,0.6); }
-
-  .chat-toggle .notif {
-    position: absolute;
-    top: -2px; right: -2px;
-    width: 14px; height: 14px;
-    background: var(--green);
-    border-radius: 50%;
-    border: 2px solid var(--bg);
-    animation: pulse 2s infinite;
-  }
-
-  .chat-window {
-    position: absolute;
-    bottom: 70px; right: 0;
-    width: 360px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
-    display: none;
-    flex-direction: column;
-    max-height: 480px;
-  }
-
-  .chat-window.open { display: flex; animation: slideUp 0.3s ease; }
-
-  @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-
-  .chat-header {
-    background: var(--blue);
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .chat-avatar {
-    width: 36px; height: 36px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-  }
-
-  .chat-header-info { flex: 1; }
-  .chat-header-name { font-weight: 700; font-size: 0.95rem; }
-  .chat-header-status { font-size: 0.72rem; opacity: 0.85; display: flex; align-items: center; gap: 5px; }
-  .chat-header-status::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; display: inline-block; }
-
-  .chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    min-height: 240px;
-    max-height: 300px;
-  }
-
-  .msg {
-    max-width: 85%;
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    line-height: 1.55;
-    animation: fadeUp 0.3s ease both;
-  }
-
-  .msg.bot {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--white);
-    align-self: flex-start;
-    border-bottom-left-radius: 4px;
-  }
-
-  .msg.user {
-    background: var(--blue);
-    color: #fff;
-    align-self: flex-end;
-    border-bottom-right-radius: 4px;
-  }
-
-  .typing {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 10px 14px;
-    border-radius: 12px;
-    border-bottom-left-radius: 4px;
-    max-width: fit-content;
-  }
-
-  .typing span {
-    width: 6px; height: 6px;
-    background: var(--muted);
-    border-radius: 50%;
-    animation: typing-dot 1.2s infinite;
-  }
-  .typing span:nth-child(2) { animation-delay: 0.2s; }
-  .typing span:nth-child(3) { animation-delay: 0.4s; }
-
-  @keyframes typing-dot { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
-
-  .chat-quick-replies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 0 16px 10px;
-  }
-
-  .quick-reply {
-    background: rgba(0,102,255,0.1);
-    border: 1px solid rgba(0,102,255,0.25);
-    color: var(--teal);
-    padding: 6px 14px;
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: var(--font-body);
-  }
-  .quick-reply:hover { background: rgba(0,102,255,0.2); }
-
-  .chat-input-row {
-    display: flex;
-    gap: 10px;
-    padding: 12px 16px;
-    border-top: 1px solid var(--border);
-  }
-
-  .chat-input {
-    flex: 1;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--white);
-    padding: 9px 14px;
-    border-radius: 8px;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    outline: none;
-  }
-  .chat-input:focus { border-color: var(--blue); }
-
-  .chat-send {
-    background: var(--blue);
-    border: none;
-    color: #fff;
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .chat-send:hover { background: #0052cc; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 48px 6% 32px;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 48px;
-  }
-
-  .footer-brand .logo { display: block; margin-bottom: 12px; }
-  .footer-brand p { color: var(--muted); font-size: 0.85rem; line-height: 1.65; max-width: 280px; }
-
-  footer h4 {
-    font-family: var(--font-head);
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 16px;
-    color: var(--muted);
-  }
-
-  footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  footer ul a { color: var(--muted); font-size: 0.88rem; text-decoration: none; transition: color 0.2s; }
-  footer ul a:hover { color: var(--white); }
-
-  .footer-bottom {
-    grid-column: 1 / -1;
-    border-top: 1px solid var(--border);
-    padding-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--muted);
-    font-size: 0.78rem;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .services-grid, .pricing-grid, .process-steps { grid-template-columns: 1fr; }
-    .contact-wrap { grid-template-columns: 1fr; gap: 48px; }
-    footer { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .stats-strip { flex-direction: column; }
-    .stat { border-right: none; border-bottom: 1px solid var(--border); }
-    .stat:last-child { border-bottom: none; }
-    .process-steps::before { display: none; }
-    .chat-window { width: 320px; }
-    .nav-links { display: none; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppTeck.ai — AI Agents That Run Your Business</title>
+  <meta name="description" content="AppTeck.ai builds, deploys, and manages custom AI agents for Australian businesses — handling bookings, leads, follow-ups, and admin 24/7.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/chat.css">
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;"><svg width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="60" height="60" rx="14" fill="#0066FF"/><circle cx="30" cy="30" r="5" fill="white"/><circle cx="30" cy="10" r="3" fill="white" opacity="0.95"/><circle cx="50" cy="30" r="3" fill="white" opacity="0.95"/><circle cx="30" cy="50" r="3" fill="white" opacity="0.95"/><circle cx="10" cy="30" r="3" fill="white" opacity="0.95"/><line x1="30" y1="25" x2="30" y2="13" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/><line x1="35" y1="30" x2="47" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/><line x1="30" y1="35" x2="30" y2="47" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/><line x1="25" y1="30" x2="13" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/><circle cx="45" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/><circle cx="45" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/><circle cx="15" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/><circle cx="15" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/></svg><span style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.3rem;color:#f0f6ff;letter-spacing:-0.5px;">AppTeck<span style="color:#0066FF;">.ai</span></span></a>
+  <a href="#" class="logo">
+    <svg width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="0" y="0" width="60" height="60" rx="14" fill="#0066FF"/>
+      <circle cx="30" cy="30" r="5" fill="white"/>
+      <circle cx="30" cy="10" r="3" fill="white" opacity="0.95"/>
+      <circle cx="50" cy="30" r="3" fill="white" opacity="0.95"/>
+      <circle cx="30" cy="50" r="3" fill="white" opacity="0.95"/>
+      <circle cx="10" cy="30" r="3" fill="white" opacity="0.95"/>
+      <line x1="30" y1="25" x2="30" y2="13" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+      <line x1="35" y1="30" x2="47" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+      <line x1="30" y1="35" x2="30" y2="47" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+      <line x1="25" y1="30" x2="13" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+      <circle cx="45" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+      <circle cx="45" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+      <circle cx="15" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+      <circle cx="15" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+    </svg>
+    <span class="logo-text">AppTeck<span>.ai</span></span>
+  </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#pricing">Pricing</a></li>
@@ -967,7 +56,7 @@
     <h1>AI Agents That<br><span class="accent">Run Your Business</span><br>While You Don't</h1>
     <p class="hero-sub">We build, deploy, and manage custom AI agents for Australian businesses — handling bookings, leads, follow-ups, and admin 24/7. No tech knowledge needed.</p>
     <div class="hero-ctas">
-      <a href="https://cal.com/appteck" target="_blank" class="btn-primary">Book a Free Discovery Call</a>
+      <a href="https://cal.com/appteck" target="_blank" rel="noopener" class="btn-primary">Book a Free Discovery Call</a>
       <a href="#services" class="btn-ghost">See What We Build</a>
     </div>
     <div class="stats-strip">
@@ -1030,11 +119,10 @@
   <p class="section-sub reveal">Choose the tier that fits your business today. Upgrade anytime. Cancel with 30 days notice — no lock-in, ever.</p>
   <div class="pricing-grid">
 
-    <!-- SMALL -->
     <div class="pricing-card reveal">
-      <div class="tier-name"><span class="tier-badge" style="background:var(--green)"></span>Small</div>
+      <div class="tier-name"><span class="tier-badge small"></span>Small</div>
       <div class="setup-label">Setup Fee</div>
-      <div class="setup-price" style="color:var(--green)">$3,000</div>
+      <div class="setup-price small">$3,000</div>
       <div class="retainer">$250 / month</div>
       <div class="no-lock">No lock-in — cancel anytime</div>
       <hr class="divider">
@@ -1049,11 +137,10 @@
       <a href="#contact" class="pricing-cta">Get Started →</a>
     </div>
 
-    <!-- MEDIUM -->
     <div class="pricing-card featured reveal">
-      <div class="tier-name"><span class="tier-badge" style="background:var(--amber)"></span>Medium</div>
+      <div class="tier-name"><span class="tier-badge medium"></span>Medium</div>
       <div class="setup-label">Setup Fee</div>
-      <div class="setup-price" style="color:var(--amber)">$6,000</div>
+      <div class="setup-price medium">$6,000</div>
       <div class="retainer">$600 / month</div>
       <div class="no-lock">No lock-in — cancel anytime</div>
       <hr class="divider">
@@ -1068,11 +155,10 @@
       <a href="#contact" class="pricing-cta">Get Started →</a>
     </div>
 
-    <!-- LARGE -->
     <div class="pricing-card reveal">
-      <div class="tier-name"><span class="tier-badge" style="background:var(--red)"></span>Large</div>
+      <div class="tier-name"><span class="tier-badge large"></span>Large</div>
       <div class="setup-label">Setup Fee</div>
-      <div class="setup-price" style="color:var(--red)">$10,000</div>
+      <div class="setup-price large">$10,000</div>
       <div class="retainer">$1,000 / month</div>
       <div class="no-lock">No lock-in — cancel anytime</div>
       <hr class="divider">
@@ -1094,7 +180,7 @@
 <section id="process">
   <p class="section-label reveal">How It Works</p>
   <h2 class="reveal">From Conversation to<br>Fully Deployed in Weeks</h2>
-  <p class="section-sub reveal" style="margin-bottom:64px">No drawn-out onboarding. No confusing tech. Just a clear process from day one.</p>
+  <p class="section-sub reveal">No drawn-out onboarding. No confusing tech. Just a clear process from day one.</p>
   <div class="process-steps">
     <div class="step reveal">
       <div class="step-num">01</div>
@@ -1159,31 +245,31 @@
       <h2>Ready to Automate?<br>Let's Start With<br>a Conversation.</h2>
       <p>Tell us what you're working on. No pitch deck, no tech jargon. Just a straight conversation about what AI can do for your business.</p>
       <div class="contact-detail"><div class="icon">📍</div>Melbourne, Victoria, Australia</div>
-      <div class="contact-detail"><div class="icon">✉️</div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b5c6d4d9d0c6f5d4c5c5c1d0d6de9bd4dc">[email&#160;protected]</a></div>
-      <a href="https://cal.com/appteck" target="_blank" class="booking-btn" id="bookingBtn">📅 Book a 30-Min Discovery Call</a>
+      <div class="contact-detail"><div class="icon">✉️</div><a href="mailto:sales@appteck.ai" style="color:inherit;text-decoration:none;">sales@appteck.ai</a></div>
+      <a href="https://cal.com/appteck" target="_blank" rel="noopener" class="booking-btn">📅 Book a 30-Min Discovery Call</a>
     </div>
     <div>
       <div class="contact-form" id="contactForm">
         <div class="form-row">
           <div class="field">
-            <label>First Name</label>
+            <label for="fname">First Name</label>
             <input type="text" placeholder="John" id="fname">
           </div>
           <div class="field">
-            <label>Last Name</label>
+            <label for="lname">Last Name</label>
             <input type="text" placeholder="Smith" id="lname">
           </div>
         </div>
         <div class="field">
-          <label>Business Email</label>
+          <label for="email">Business Email</label>
           <input type="email" placeholder="you@business.com.au" id="email">
         </div>
         <div class="field">
-          <label>Business Name</label>
+          <label for="bizname">Business Name</label>
           <input type="text" placeholder="Your Business Pty Ltd" id="bizname">
         </div>
         <div class="field">
-          <label>Industry</label>
+          <label for="industry">Industry</label>
           <select id="industry">
             <option value="">Select your industry...</option>
             <option>Health & Beauty / Clinic</option>
@@ -1196,7 +282,7 @@
           </select>
         </div>
         <div class="field">
-          <label>Interested In</label>
+          <label for="tier">Interested In</label>
           <select id="tier">
             <option value="">Select a tier...</option>
             <option>Small — $3,000 setup + $250/mo</option>
@@ -1206,16 +292,16 @@
           </select>
         </div>
         <div class="field">
-          <label>Tell Us About Your Biggest Bottleneck</label>
+          <label for="message">Tell Us About Your Biggest Bottleneck</label>
           <textarea placeholder="e.g. We miss leads after hours, booking is all manual, our team spends hours on admin..." id="message"></textarea>
         </div>
-        <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
+        <button type="button" class="form-submit">Send Enquiry →</button>
         <p class="form-note">We reply within 24 hours. No spam, ever.</p>
       </div>
-      <div id="formSuccess" style="display:none;padding:40px;text-align:center;">
-        <div style="font-size:3rem;margin-bottom:16px">✅</div>
-        <h3 style="font-family:var(--font-head);font-size:1.4rem;margin-bottom:10px">Enquiry Sent!</h3>
-        <p style="color:var(--muted);font-size:0.92rem">Thanks — we'll be in touch within 24 hours to set up your free discovery call.</p>
+      <div id="formSuccess" class="form-success">
+        <div class="form-success-icon">✅</div>
+        <h3>Enquiry Sent!</h3>
+        <p>Thanks — we'll be in touch within 24 hours to set up your free discovery call.</p>
       </div>
     </div>
   </div>
@@ -1224,7 +310,25 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">
-    <a href="#" class="logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:12px;"><svg width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="60" height="60" rx="14" fill="#0066FF"/><circle cx="30" cy="30" r="5" fill="white"/><circle cx="30" cy="10" r="3" fill="white" opacity="0.95"/><circle cx="50" cy="30" r="3" fill="white" opacity="0.95"/><circle cx="30" cy="50" r="3" fill="white" opacity="0.95"/><circle cx="10" cy="30" r="3" fill="white" opacity="0.95"/><line x1="30" y1="25" x2="30" y2="13" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/><line x1="35" y1="30" x2="47" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/><line x1="30" y1="35" x2="30" y2="47" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/><line x1="25" y1="30" x2="13" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/><circle cx="45" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/><circle cx="45" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/><circle cx="15" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/><circle cx="15" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/></svg><span style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.3rem;color:#f0f6ff;letter-spacing:-0.5px;">AppTeck<span style="color:#0066FF;">.ai</span></span></a>
+    <a href="#" class="logo">
+      <svg width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0" width="60" height="60" rx="14" fill="#0066FF"/>
+        <circle cx="30" cy="30" r="5" fill="white"/>
+        <circle cx="30" cy="10" r="3" fill="white" opacity="0.95"/>
+        <circle cx="50" cy="30" r="3" fill="white" opacity="0.95"/>
+        <circle cx="30" cy="50" r="3" fill="white" opacity="0.95"/>
+        <circle cx="10" cy="30" r="3" fill="white" opacity="0.95"/>
+        <line x1="30" y1="25" x2="30" y2="13" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+        <line x1="35" y1="30" x2="47" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+        <line x1="30" y1="35" x2="30" y2="47" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+        <line x1="25" y1="30" x2="13" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+        <circle cx="45" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+        <circle cx="45" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+        <circle cx="15" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+        <circle cx="15" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+      </svg>
+      <span class="logo-text">AppTeck<span>.ai</span></span>
+    </a>
     <p>AI agents built, deployed, and managed for Australian businesses. No tech knowledge required. No lock-in contracts.</p>
   </div>
   <div>
@@ -1265,172 +369,23 @@
     </div>
     <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-quick-replies" id="quickReplies">
-      <button class="quick-reply" onclick="sendQuick('What does AppTeck.ai do?')">What do you do?</button>
-      <button class="quick-reply" onclick="sendQuick('Tell me about pricing')">Pricing</button>
-      <button class="quick-reply" onclick="sendQuick('How long does setup take?')">Setup time</button>
+      <button class="quick-reply" data-quick="What does AppTeck.ai do?">What do you do?</button>
+      <button class="quick-reply" data-quick="Tell me about pricing">Pricing</button>
+      <button class="quick-reply" data-quick="How long does setup take?">Setup time</button>
     </div>
     <div class="chat-input-row">
-      <input class="chat-input" id="chatInput" placeholder="Ask me anything..." onkeydown="if(event.key==='Enter')sendChat()">
-      <button class="chat-send" onclick="sendChat()">→</button>
+      <input class="chat-input" id="chatInput" placeholder="Ask me anything...">
+      <button class="chat-send" id="chatSend" aria-label="Send message">→</button>
     </div>
   </div>
-  <button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+  <button class="chat-toggle" id="chatToggle" aria-label="Open chat">
     💬
     <span class="notif"></span>
   </button>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // ── SCROLL REVEAL ──
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // ── FAQ ──
-  document.querySelectorAll('.faq-q').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.parentElement;
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-    });
-  });
-
-  // ── FORM ──
-  async function submitForm() {
-    const fname = document.getElementById('fname').value.trim();
-    const lname = document.getElementById('lname').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const biz   = document.getElementById('bizname').value.trim();
-    const ind   = document.getElementById('industry').value;
-    const tier  = document.getElementById('tier').value;
-    const msg   = document.getElementById('message').value.trim();
-    if (!fname || !email) { alert('Please fill in at least your name and email.'); return; }
-    const btn = document.querySelector('.form-submit');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    try {
-      const payload = JSON.stringify({ name: fname + ' ' + lname, email, business: biz, industry: ind, tier, message: msg });
-      const [res1, res2] = await Promise.all([
-        fetch('https://formspree.io/f/mzdkeznw', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: payload
-        }),
-        fetch('https://leads.appteck.ai/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: payload
-        })
-      ]);
-      if (res1.ok || res2.ok) {
-        document.getElementById('contactForm').style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      } else {
-        throw new Error('Form error');
-      }
-    } catch(e) {
-      btn.textContent = 'Send Enquiry →';
-      btn.disabled = false;
-      alert('Something went wrong. Please email us directly at sales@appteck.ai');
-    }
-  }
-
-  // ── CHAT ──
-  let chatOpen = false;
-  let chatStarted = false;
-  const chatHistory = [];
-  const MAX_HISTORY = 20;
-
-  const CHAT_API_URL = 'https://leads.appteck.ai/chat';
-
-  function toggleChat() {
-    chatOpen = !chatOpen;
-    const win = document.getElementById('chatWindow');
-    win.classList.toggle('open', chatOpen);
-    document.getElementById('chatToggle').innerHTML = chatOpen ? '✕' : '💬 <span class="notif"></span>';
-    if (chatOpen && !chatStarted) {
-      chatStarted = true;
-      setTimeout(() => addMsg('bot', "👋 Hi! I'm the AppTeck.ai assistant. I can answer questions about our services, pricing, and how we work. What would you like to know?"), 400);
-    }
-  }
-
-  function addMsg(type, text) {
-    const msgs = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    div.className = `msg ${type}`;
-    div.textContent = text;
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  function showTyping() {
-    const msgs = document.getElementById('chatMessages');
-    const t = document.createElement('div');
-    t.className = 'typing'; t.id = 'typing';
-    t.innerHTML = '<span></span><span></span><span></span>';
-    msgs.appendChild(t);
-    msgs.scrollTop = msgs.scrollHeight;
-    return t;
-  }
-
-  async function getAIResponse(userMsg) {
-    chatHistory.push({ role: 'user', content: userMsg });
-    if (chatHistory.length > MAX_HISTORY) {
-      chatHistory.splice(0, chatHistory.length - MAX_HISTORY);
-    }
-
-    const response = await fetch(CHAT_API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: chatHistory })
-    });
-
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    const reply = data.reply || data.content?.[0]?.text || '';
-    chatHistory.push({ role: 'assistant', content: reply });
-    if (chatHistory.length > MAX_HISTORY) {
-      chatHistory.splice(0, chatHistory.length - MAX_HISTORY);
-    }
-    return reply;
-  }
-
-  async function sendChat() {
-    const input = document.getElementById('chatInput');
-    const text = input.value.trim();
-    if (!text) return;
-    addMsg('user', text);
-    input.value = '';
-    document.getElementById('quickReplies').style.display = 'none';
-    const t = showTyping();
-    try {
-      const reply = await getAIResponse(text);
-      t.remove();
-      addMsg('bot', reply);
-    } catch (err) {
-      t.remove();
-      addMsg('bot', "I'm having trouble connecting. Please email sales@appteck.ai or book at cal.com/appteck");
-    }
-  }
-
-  async function sendQuick(text) {
-    addMsg('user', text);
-    document.getElementById('quickReplies').style.display = 'none';
-    const t = showTyping();
-    try {
-      const reply = await getAIResponse(text);
-      t.remove();
-      addMsg('bot', reply);
-    } catch (err) {
-      t.remove();
-      addMsg('bot', "I'm having trouble connecting. Please email sales@appteck.ai or book at cal.com/appteck");
-    }
-  }
-</script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/form.js" defer></script>
+<script src="assets/js/chat.js" defer></script>
 </body>
 </html>
