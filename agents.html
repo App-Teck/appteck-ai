@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppTeck.ai — Our AI Agent Stack</title>
+  <meta name="description" content="11 autonomous AI agents working 24/7 so you don't have to. See how AppTeck.ai's agent stack runs Australian businesses end-to-end.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/chat.css">
+  <link rel="stylesheet" href="assets/css/agents.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <svg width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="0" y="0" width="60" height="60" rx="14" fill="#0066FF"/>
+      <circle cx="30" cy="30" r="5" fill="white"/>
+      <circle cx="30" cy="10" r="3" fill="white" opacity="0.95"/>
+      <circle cx="50" cy="30" r="3" fill="white" opacity="0.95"/>
+      <circle cx="30" cy="50" r="3" fill="white" opacity="0.95"/>
+      <circle cx="10" cy="30" r="3" fill="white" opacity="0.95"/>
+      <line x1="30" y1="25" x2="30" y2="13" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+      <line x1="35" y1="30" x2="47" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+      <line x1="30" y1="35" x2="30" y2="47" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+      <line x1="25" y1="30" x2="13" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+      <circle cx="45" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+      <circle cx="45" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+      <circle cx="15" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+      <circle cx="15" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+    </svg>
+    <span class="logo-text">AppTeck<span>.ai</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="agents.html" class="active" aria-current="page">Agents</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="agents-hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">Live on DigitalOcean Sydney · 24/7</div>
+    <h1>Our <span class="accent">AI Agent</span> Stack</h1>
+    <p class="hero-sub">11 autonomous agents working 24/7 so you don't have to. Real-time webhooks, scheduled crons, and a trained AI brain tying it all together.</p>
+    <div class="agent-legend">
+      <div class="agent-pill"><span class="agent-dot live"></span>Live</div>
+      <div class="agent-pill"><span class="agent-dot soon"></span>Coming soon</div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENT STACK -->
+<section id="agents-stack">
+  <p class="section-label reveal">The Stack</p>
+  <h2 class="reveal">Every Agent, Fully Transparent</h2>
+  <p class="section-sub reveal">Click any card to see the trigger, the flow, and exactly what happens under the hood.</p>
+
+  <div class="agent-group reveal">
+    <div class="agent-group-label">Real-time — webhook triggered</div>
+    <div class="agent-grid" id="rt-grid"></div>
+  </div>
+
+  <div class="agent-group reveal">
+    <div class="agent-group-label">Scheduled — cron triggered</div>
+    <div class="agent-grid" id="cr-grid"></div>
+  </div>
+
+  <div id="agentDetail" class="agent-detail" style="display:none" role="region" aria-label="Agent details"></div>
+</section>
+
+<!-- INFRASTRUCTURE -->
+<section id="agents-infra">
+  <p class="section-label reveal" style="text-align:center">Infrastructure</p>
+  <h2 class="reveal" style="text-align:center;margin-bottom:48px">Built on Proven Tech</h2>
+  <div class="infra-grid reveal">
+    <div class="infra-item"><div class="infra-label">Server</div><div class="infra-value">DigitalOcean Sydney</div></div>
+    <div class="infra-item"><div class="infra-label">AI Brain</div><div class="infra-value">OpenClaw + Claude</div></div>
+    <div class="infra-item"><div class="infra-label">Database</div><div class="infra-value">SQLite CRM</div></div>
+    <div class="infra-item"><div class="infra-label">Tunnel</div><div class="infra-value">Cloudflare HTTPS</div></div>
+    <div class="infra-item"><div class="infra-label">Compliance</div><div class="infra-value">AHPRA + Privacy Act</div></div>
+    <div class="infra-item"><div class="infra-label">Notifications</div><div class="infra-value">Telegram + Gmail API</div></div>
+    <div class="infra-item"><div class="infra-label">Email Send</div><div class="infra-value">Gmail API (APPROVE cmd)</div></div>
+    <div class="infra-item"><div class="infra-label">Website Bot</div><div class="infra-value">Claude Haiku (secured)</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" style="text-align:center">
+  <p class="section-label reveal">Let's Talk</p>
+  <h2 class="reveal">Want This Running Your Business?</h2>
+  <p class="section-sub reveal" style="margin-left:auto;margin-right:auto">Every agent is purpose-built for your workflow. Book a free discovery call and we'll map out what your stack could look like.</p>
+  <div class="hero-ctas reveal" style="justify-content:center">
+    <a href="https://cal.com/appteck" target="_blank" rel="noopener" class="btn-primary">Book a Free Discovery Call</a>
+    <a href="index.html#contact" class="btn-ghost">Send an Enquiry</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a href="index.html" class="logo">
+      <svg width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="0" y="0" width="60" height="60" rx="14" fill="#0066FF"/>
+        <circle cx="30" cy="30" r="5" fill="white"/>
+        <circle cx="30" cy="10" r="3" fill="white" opacity="0.95"/>
+        <circle cx="50" cy="30" r="3" fill="white" opacity="0.95"/>
+        <circle cx="30" cy="50" r="3" fill="white" opacity="0.95"/>
+        <circle cx="10" cy="30" r="3" fill="white" opacity="0.95"/>
+        <line x1="30" y1="25" x2="30" y2="13" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+        <line x1="35" y1="30" x2="47" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+        <line x1="30" y1="35" x2="30" y2="47" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+        <line x1="25" y1="30" x2="13" y2="30" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.75"/>
+        <circle cx="45" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+        <circle cx="45" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+        <circle cx="15" cy="45" r="2.5" fill="#00D4FF" opacity="0.9"/>
+        <circle cx="15" cy="15" r="2.5" fill="#00D4FF" opacity="0.9"/>
+      </svg>
+      <span class="logo-text">AppTeck<span>.ai</span></span>
+    </a>
+    <p>AI agents built, deployed, and managed for Australian businesses. No tech knowledge required. No lock-in contracts.</p>
+  </div>
+  <div>
+    <h4>Quick Links</h4>
+    <ul>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="agents.html">Agents</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+      <li><a href="index.html#contact">Get in Touch</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Industries</h4>
+    <ul>
+      <li><a href="index.html#contact">Health & Beauty Clinics</a></li>
+      <li><a href="index.html#contact">Retail & E-commerce</a></li>
+      <li><a href="index.html#contact">Finance & Legal</a></li>
+      <li><a href="index.html#contact">Real Estate</a></li>
+      <li><a href="index.html#contact">Trades & Services</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 AppTeck.ai — Melbourne, Australia</span>
+    <span>ABN Registered · Privacy Act Compliant</span>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<div class="chat-bubble">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <div class="chat-avatar">🤖</div>
+      <div class="chat-header-info">
+        <div class="chat-header-name">AppTeck AI Assistant</div>
+        <div class="chat-header-status">Online now</div>
+      </div>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-quick-replies" id="quickReplies">
+      <button class="quick-reply" data-quick="What does AppTeck.ai do?">What do you do?</button>
+      <button class="quick-reply" data-quick="Tell me about pricing">Pricing</button>
+      <button class="quick-reply" data-quick="How long does setup take?">Setup time</button>
+    </div>
+    <div class="chat-input-row">
+      <input class="chat-input" id="chatInput" placeholder="Ask me anything...">
+      <button class="chat-send" id="chatSend" aria-label="Send message">→</button>
+    </div>
+  </div>
+  <button class="chat-toggle" id="chatToggle" aria-label="Open chat">
+    💬
+    <span class="notif"></span>
+  </button>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/chat.js" defer></script>
+<script src="assets/js/agents.js" defer></script>
+</body>
+</html>

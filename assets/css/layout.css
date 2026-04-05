@@ -41,6 +41,7 @@ nav {
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--white); }
+.nav-links a.active { color: var(--white); }
 
 .nav-cta {
   background: var(--blue);
