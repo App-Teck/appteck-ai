@@ -24,19 +24,30 @@ const navLinks = document.getElementById('navLinks');
 if (navToggle && navLinks) {
   const closeMenu = () => {
     navLinks.classList.remove('open');
+    navToggle.classList.remove('active');
     navToggle.setAttribute('aria-expanded', 'false');
   };
 
-  const toggleMenu = () => {
+  const toggleMenu = (e) => {
+    e.stopPropagation();
     const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('active', isOpen);
     navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   };
 
   navToggle.addEventListener('click', toggleMenu);
 
-  // Close on link click
+  // Close on nav link click
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMenu);
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('open')) return;
+    if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+      closeMenu();
+    }
   });
 
   // Close on Escape
