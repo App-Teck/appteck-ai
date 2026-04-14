@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AppTeck.ai — Your AI Workforce</title>
+<meta name="robots" content="noindex,follow">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a96e;--dark:#0a0c14;--dark2:#10132a;--card:#141730;--green:#22c55e;--red:#e53e3e}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#0a0c14;color:#e8e8f0;font-family:'Outfit',sans-serif;overflow-x:hidden;scroll-behavior:smooth}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,12,20,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,0.1)}
+.logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold);text-decoration:none}
+.nav-r{display:flex;gap:2rem;align-items:center}
+.nav-r a{color:#8b90a8;text-decoration:none;font-size:.9rem}
+.nav-r a:hover{color:var(--gold)}
+.nav-btn{background:var(--gold);color:#0a0c14;padding:.6rem 1.4rem;border-radius:6px;font-weight:600;font-size:.85rem;text-decoration:none}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem;background:#0a0c14;position:relative}
+.hero-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,0.06)0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
+.hero-container{max-width:1300px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:4rem;position:relative;z-index:1}
+.hero-inner{max-width:650px;flex:1 1 auto}
+.hero-tag{display:inline-block;color:var(--gold);font-size:.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:1.5rem;border:1px solid rgba(201,169,110,0.4);padding:.4rem 1rem;border-radius:20px;opacity:0;animation:fu .7s .2s forwards}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;color:#f0f0f5;opacity:0;animation:fu .7s .4s forwards}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{font-size:1.15rem;color:#a0a4b8;line-height:1.7;max-width:520px;margin-bottom:2.5rem;opacity:0;animation:fu .7s .6s forwards}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fu .7s .8s forwards}
+.btn-p{background:var(--gold);color:#0a0c14;padding:1rem 2.4rem;border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;transition:all .3s}
+.btn-p:hover{background:#d4b87a;transform:translateY(-2px);box-shadow:0 8px 25px rgba(201,169,110,0.25)}
+.btn-s{border:1px solid rgba(201,169,110,0.5);color:var(--gold);padding:1rem 2.4rem;border-radius:8px;font-weight:500;font-size:1rem;text-decoration:none;transition:all .3s}
+.btn-s:hover{background:rgba(201,169,110,0.1)}
+.hero-stats{display:flex;flex-direction:column;gap:2rem;flex:0 0 auto;opacity:0;animation:fu .7s 1s forwards}
+.h-stat .n{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;color:var(--gold);line-height:1}
+.h-stat .l{font-size:.85rem;color:#6b7085;margin-top:.3rem;text-align:right}
+
+.sec{padding:6rem 3rem}
+.sec-dark{background:#0a0c14}
+.sec-alt{background:var(--dark2)}
+.stag{color:var(--gold);font-size:.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:700;margin-bottom:3rem;line-height:1.2;color:#f0f0f5}
+
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1100px}
+.prob-card{background:var(--card);border-radius:16px;padding:2.5rem;border:1px solid rgba(255,255,255,.04);transition:all .3s}
+.prob-card:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.15)}
+.prob-card .s{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--red);margin-bottom:.5rem}
+.prob-card h3{font-size:1.05rem;font-weight:600;color:#e0e0e8;margin-bottom:.7rem}
+.prob-card p{font-size:.88rem;color:#8b90a8;line-height:1.6}
+
+.ag-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1200px}
+.ag-card{background:var(--card);border-radius:14px;padding:1.8rem;border:1px solid rgba(255,255,255,.04);transition:all .3s;position:relative;overflow:hidden}
+.ag-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);opacity:0;transition:opacity .3s}
+.ag-card:hover{transform:translateY(-4px);border-color:rgba(201,169,110,.15)}
+.ag-card:hover::after{opacity:1}
+.ag-card .ic{font-size:1.8rem;margin-bottom:.8rem;display:block}
+.ag-card h3{font-size:.95rem;font-weight:600;color:var(--gold);margin-bottom:.5rem}
+.ag-card p{font-size:.82rem;color:#8b90a8;line-height:1.6}
+
+.pm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1100px}
+.pm-card{background:var(--card);border-radius:14px;padding:2rem;border-top:3px solid var(--gold);border-left:1px solid rgba(255,255,255,.04);border-right:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);transition:transform .3s}
+.pm-card:hover{transform:translateY(-4px)}
+.pm-card .ic{font-size:1.6rem;margin-bottom:.7rem}
+.pm-card h3{font-size:1.05rem;font-weight:600;color:var(--gold);margin-bottom:.5rem}
+.pm-card p{font-size:.82rem;color:#8b90a8;line-height:1.6;margin-bottom:.6rem}
+.pm-card .t{font-size:.7rem;color:#6b7085;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1100px}
+.step{text-align:center}
+.step-n{width:56px;height:56px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--gold)}
+.step h3{font-size:1.05rem;font-weight:600;color:#e0e0e8;margin-bottom:.7rem}
+.step p{font-size:.85rem;color:#8b90a8;line-height:1.6;padding:0 .5rem}
+
+.pr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:900px;margin:0 auto;align-items:start}
+.pr-card{background:var(--card);border-radius:16px;padding:2.5rem;border:1px solid rgba(255,255,255,.04);transition:transform .3s;position:relative}
+.pr-card.ft{border-color:var(--gold);transform:scale(1.02)}
+.pr-card.ft::before{content:'MOST POPULAR';position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#0a0c14;padding:.3rem 1.2rem;border-radius:20px;font-size:.7rem;font-weight:700;letter-spacing:1px}
+.pr-card:hover{transform:translateY(-4px)}
+.pr-card.ft:hover{transform:scale(1.02) translateY(-4px)}
+.pr-tier{font-size:.85rem;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
+.pr-amt{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:#f0f0f5;margin-bottom:.3rem}
+.pr-amt span{font-size:.95rem;font-weight:400;color:#6b7085}
+.pr-feat{list-style:none;margin:1.5rem 0 2rem}
+.pr-feat li{padding:.45rem 0;font-size:.88rem;color:#c8cce0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:.5rem}
+.pr-feat li::before{content:'✓';color:var(--green);font-weight:700;font-size:.8rem}
+.pr-feat li.hl{color:var(--gold)}
+.pr-feat li.hl::before{content:'★'}
+.pr-setup{font-size:.8rem;color:#6b7085;margin-bottom:1.5rem}
+.pr-cta{display:block;text-align:center;padding:.9rem;border-radius:8px;font-weight:600;text-decoration:none;transition:all .3s}
+.pr-cta.p{background:var(--gold);color:#0a0c14}
+.pr-cta.p:hover{background:#d4b87a}
+.pr-cta.o{border:1px solid rgba(201,169,110,.4);color:var(--gold)}
+.pr-cta.o:hover{background:rgba(201,169,110,.1)}
+
+.res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1100px}
+.res-card{text-align:center;padding:2rem}
+.res-card .n{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;color:var(--green);margin-bottom:.5rem}
+.res-card h3{font-size:.95rem;font-weight:600;color:#e0e0e8;margin-bottom:.3rem}
+.res-card p{font-size:.82rem;color:#6b7085}
+
+.cta-sec{padding:7rem 3rem;text-align:center;background:#0a0c14}
+.cta-sec h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;color:#f0f0f5;margin-bottom:1.5rem}
+.cta-sec>p{font-size:1.1rem;color:#a0a4b8;margin-bottom:3rem}
+.cta-box{max-width:480px;margin:0 auto;background:var(--card);border-radius:16px;padding:2.5rem;border:1px solid rgba(201,169,110,.15)}
+.cta-box h3{font-size:1.3rem;font-weight:600;color:#f0f0f5;margin-bottom:.5rem}
+.cta-box .em{color:var(--gold);font-size:1rem;margin-bottom:.3rem}
+.cta-box .loc{color:#6b7085;font-size:.9rem;margin-bottom:1.5rem}
+
+footer{padding:2rem 3rem;text-align:center;font-size:.8rem;color:#6b7085;border-top:1px solid rgba(255,255,255,.04);background:#0a0c14}
+footer .ft{font-family:'Playfair Display',serif;color:var(--gold);font-size:.9rem;margin-bottom:.5rem}
+
+@keyframes fu{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+.rv{opacity:0;transform:translateY(25px);transition:all .7s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:1024px){.hero-container{flex-direction:column;align-items:flex-start;gap:3rem}.hero-stats{flex-direction:row;gap:2.5rem;align-self:stretch;justify-content:flex-start;flex-wrap:wrap}.h-stat .l{text-align:left}.ag-grid,.pm-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-r a:not(.nav-btn){display:none}.hero,.sec,.cta-sec{padding:5rem 1.5rem}.prob-grid,.pr-grid,.res-grid,.ag-grid,.pm-grid,.steps{grid-template-columns:1fr}.pr-card.ft{transform:none}.hero-btns{flex-direction:column}.hero-stats{gap:1.5rem}.h-stat .n{font-size:2.4rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">APPTECK.AI</a>
+  <div class="nav-r">
+    <a href="#agents">Agents</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#how">How It Works</a>
+    <a href="#book" class="nav-btn">BOOK A CALL</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-container">
+    <div class="hero-inner">
+      <div class="hero-tag">AI Automation Agency — Melbourne</div>
+      <h1>Your Business<br>Deserves an<br><em>AI Workforce</em></h1>
+      <p>8 AI agents working 24/7 — answering your visitors, capturing every lead, drafting every email, tracking every booking. While you sleep.</p>
+      <div class="hero-btns">
+        <a href="#book" class="btn-p">Book a Free Discovery Call</a>
+        <a href="#agents" class="btn-s">See the Agents</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="h-stat"><div class="n">8</div><div class="l">AI Agents</div></div>
+      <div class="h-stat"><div class="n">24/7</div><div class="l">Always On</div></div>
+      <div class="h-stat"><div class="n">&lt;5s</div><div class="l">Response Time</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-dark">
+  <div class="stag rv">The Problem</div>
+  <h2 class="stitle rv">Your Business Is Leaking<br>Revenue Every Day</h2>
+  <div class="prob-grid">
+    <div class="prob-card rv"><div class="s">67%</div><h3>of leads never get a response</h3><p>Enquiries come in after hours, on weekends, during busy periods — and nobody follows up.</p></div>
+    <div class="prob-card rv"><div class="s">23hrs</div><h3>average response time</h3><p>By the time you reply, they've already booked with your competitor down the road.</p></div>
+    <div class="prob-card rv"><div class="s">$42K</div><h3>lost per year from missed leads</h3><p>Every unanswered call, ignored email, abandoned chat — that's revenue walking out the door.</p></div>
+  </div>
+</section>
+
+<section class="sec sec-dark" id="agents">
+  <div class="stag rv">Standard Tier</div>
+  <h2 class="stitle rv">8 AI Agents —<br>Your Core Workforce</h2>
+  <div class="ag-grid">
+    <div class="ag-card rv"><span class="ic">🤖</span><h3>AI Receptionist</h3><p>Answers website visitors 24/7, captures leads, qualifies enquiries with smart buttons and forms.</p></div>
+    <div class="ag-card rv"><span class="ic">📩</span><h3>Lead Catcher</h3><p>Every form submission scored, saved, and alerted to your phone in seconds.</p></div>
+    <div class="ag-card rv"><span class="ic">📅</span><h3>Booking Monitor</h3><p>Connects to Cliniko, Cal.com, or your booking system — real-time alerts for every appointment.</p></div>
+    <div class="ag-card rv"><span class="ic">📧</span><h3>Email Assistant</h3><p>Reads your inbox, drafts professional AI replies — you approve, edit, or skip from Telegram.</p></div>
+    <div class="ag-card rv"><span class="ic">🔔</span><h3>Follow-up Chaser</h3><p>Flags leads that haven't been contacted. No enquiry falls through the cracks.</p></div>
+    <div class="ag-card rv"><span class="ic">📊</span><h3>Daily Briefing</h3><p>Morning summary: new leads, bookings, chats, pipeline status — delivered to your phone.</p></div>
+    <div class="ag-card rv"><span class="ic">🌐</span><h3>Site Guardian</h3><p>Monitors your website uptime. If it goes down, you know before your customers do.</p></div>
+    <div class="ag-card rv"><span class="ic">🎙️</span><h3>Voice Control</h3><p>Send a voice note to draft emails, edit replies, manage leads — all hands-free from Telegram.</p></div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="stag rv">Premium Tier</div>
+  <h2 class="stitle rv">Advanced AI —<br>Maximum Impact</h2>
+  <div class="pm-grid">
+    <div class="pm-card rv"><div class="ic">📞</div><h3>AI Phone Agent</h3><p>Answers missed calls with a real AI voice. Captures caller details, books appointments, answers FAQs.</p><div class="t">Powered by Vapi + Twilio</div></div>
+    <div class="pm-card rv"><div class="ic">💬</div><h3>SMS Follow-up</h3><p>Automated AI text messages to follow up leads. Personalised, natural conversations that book appointments.</p><div class="t">Twilio Integration</div></div>
+    <div class="pm-card rv"><div class="ic">📱</div><h3>Social Media Agent</h3><p>Auto-posts to Instagram, Facebook, TikTok. Responds to DMs with AI. Turns engagement into bookings.</p><div class="t">Multi-Platform</div></div>
+    <div class="pm-card rv"><div class="ic">🔄</div><h3>Lead Reactivation</h3><p>Revives dead leads. AI contacts old enquiries via email and SMS. Clinics recover 5-15% of lost leads.</p><div class="t">Revenue Recovery Engine</div></div>
+    <div class="pm-card rv"><div class="ic">📈</div><h3>Ads & SEO Agent</h3><p>Monitors Google Ads performance, adjusts bids, tracks rankings. Weekly reports to Telegram.</p><div class="t">Google Ads API</div></div>
+    <div class="pm-card rv"><div class="ic">🧠</div><h3>AI Operations Audit</h3><p>We audit your workflow and identify where AI saves 10-20+ hours per week. Prioritised roadmap.</p><div class="t">One-Time Deliverable</div></div>
+  </div>
+</section>
+
+<section class="sec sec-dark" id="how">
+  <div class="stag rv">How It Works</div>
+  <h2 class="stitle rv">Live In Days. Not Months.</h2>
+  <div class="steps">
+    <div class="step rv"><div class="step-n">01</div><h3>Discovery</h3><p>We learn your business — tools, team, bottlenecks, goals. A 30-minute conversation.</p></div>
+    <div class="step rv"><div class="step-n">02</div><h3>Build</h3><p>We deploy your dedicated AI server, connect your systems, and train the AI on your business.</p></div>
+    <div class="step rv"><div class="step-n">03</div><h3>Go Live</h3><p>Agents start working immediately. Chat bot on site, email drafts on phone, booking alerts 24/7.</p></div>
+    <div class="step rv"><div class="step-n">04</div><h3>Optimise</h3><p>We monitor, tune, and expand. Your agents get smarter every week.</p></div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="pricing">
+  <div class="stag rv">Pricing</div>
+  <h2 class="stitle rv">Simple. Transparent.<br>Results-Driven.</h2>
+  <div class="pr-grid">
+    <div class="pr-card ft rv">
+      <div class="pr-tier">Standard</div>
+      <div class="pr-amt">$1,000<span>/month</span></div>
+      <ul class="pr-feat">
+        <li>AI Chat Bot on website</li>
+        <li>Lead Alert + scoring</li>
+        <li>Email Reader + AI drafts</li>
+        <li>Booking system integration</li>
+        <li>Follow-up Chaser</li>
+        <li>Daily Summary</li>
+        <li>Site Monitor</li>
+        <li>Voice note control</li>
+        <li>APPROVE / SKIP / EDIT from phone</li>
+      </ul>
+      <div class="pr-setup">$2,500 one-time setup</div>
+      <a href="#book" class="pr-cta p">Book a Call</a>
+    </div>
+    <div class="pr-card rv">
+      <div class="pr-tier">Premium</div>
+      <div class="pr-amt">$2,000<span>/month</span></div>
+      <ul class="pr-feat">
+        <li class="hl">Everything in Standard, plus:</li>
+        <li>AI Phone Agent (voice calls)</li>
+        <li>SMS Follow-up campaigns</li>
+        <li>Lead Reactivation</li>
+        <li>Social Media Agent</li>
+        <li>Ads & SEO monitoring</li>
+        <li>Priority support</li>
+      </ul>
+      <div class="pr-setup">$4,000 one-time setup</div>
+      <a href="#book" class="pr-cta o">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-dark">
+  <div class="stag rv">The Numbers</div>
+  <h2 class="stitle rv">What Happens When AI<br>Runs Your Front Desk</h2>
+  <div class="res-grid">
+    <div class="res-card rv"><div class="n">&lt;5s</div><h3>Response Time</h3><p>vs 23 hours industry average</p></div>
+    <div class="res-card rv"><div class="n">24/7</div><h3>Coverage</h3><p>Website, email, phone, socials</p></div>
+    <div class="res-card rv"><div class="n">15-20h</div><h3>Saved Per Week</h3><p>Email, follow-ups, scheduling</p></div>
+    <div class="res-card rv"><div class="n">100%</div><h3>Lead Capture</h3><p>No enquiry goes unanswered</p></div>
+  </div>
+</section>
+
+<section class="cta-sec" id="book">
+  <h2 class="rv">Ready to Put AI<br>to Work for Your Business?</h2>
+  <p class="rv">Book a free discovery call. No obligation. No pitch deck required.</p>
+  <div class="cta-box rv">
+    <h3>AppTeck.ai</h3>
+    <div class="em">sales@appteck.ai</div>
+    <div class="loc">Melbourne, Australia</div>
+    <a href="https://cal.com/appteck" target="_blank" class="btn-p">Book Your Free Call</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">Your business runs itself. You just approve.</div>
+  <p>&copy; 2026 AppTeck.ai — All rights reserved.</p>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach((el,i)=>{if(el.isIntersecting){setTimeout(()=>el.target.classList.add('vis'),i*60);obs.unobserve(el.target)}})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
