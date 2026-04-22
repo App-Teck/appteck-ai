@@ -44,6 +44,7 @@ async function submitForm() {
     if (res1.ok || res2.ok) {
       document.getElementById('contactForm').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
+      if (typeof fbq === 'function') fbq('track', 'Lead');
     } else {
       throw new Error('Form error');
     }
