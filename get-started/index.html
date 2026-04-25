@@ -134,7 +134,7 @@ body.banner-dismissed{--banner-h:0px}
 .agent-tasks li{margin-bottom:.25rem;line-height:1.5}
 .agent-impact{font-style:italic;opacity:.7;margin-top:10px;font-size:.9em}
 .agent-tasks,.agent-impact{display:none;margin-top:8px}
-.ag-card.expanded .agent-tasks,.ag-card.expanded .agent-impact{display:block}
+.ag-card.expanded .agent-tasks,.ag-card.expanded .agent-impact,.pm-card.expanded .agent-tasks,.pm-card.expanded .agent-impact{display:block}
 .agent-toggle{background:none;border:none;color:var(--accent,var(--gold,#c9a96e));font-size:.82em;cursor:pointer;padding:8px 0 0 0;display:block;width:100%;text-align:left;opacity:.8;font-family:inherit}
 .agent-toggle:hover{opacity:1}
 @keyframes fu{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
@@ -391,12 +391,101 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
   <div class="stag rv">Premium Tier</div>
   <h2 class="stitle rv">Advanced AI —<br>Maximum Impact</h2>
   <div class="pm-grid">
-    <div class="pm-card rv"><div class="ic">📞</div><h3>AI Phone Agent</h3><p>Answers missed calls with a real AI voice. Captures caller details, books appointments, answers FAQs.</p><div class="t">Powered by Vapi + Twilio</div></div>
-    <div class="pm-card rv"><div class="ic">💬</div><h3>SMS Follow-up</h3><p>Automated AI text messages to follow up leads. Personalised, natural conversations that book appointments.</p><div class="t">Twilio Integration</div></div>
-    <div class="pm-card rv"><div class="ic">📱</div><h3>Social Media Agent</h3><p>Auto-posts to Instagram, Facebook, TikTok. Responds to DMs with AI. Turns engagement into bookings.</p><div class="t">Multi-Platform</div></div>
-    <div class="pm-card rv"><div class="ic">🔄</div><h3>Lead Reactivation</h3><p>Revives dead leads. AI contacts old enquiries via email and SMS. Clinics recover 5-15% of lost leads.</p><div class="t">Revenue Recovery Engine</div></div>
-    <div class="pm-card rv"><div class="ic">📈</div><h3>Ads & SEO Agent</h3><p>Monitors Google Ads performance, adjusts bids, tracks rankings. Weekly reports to Telegram.</p><div class="t">Google Ads API</div></div>
-    <div class="pm-card rv"><div class="ic">🧠</div><h3>AI Operations Audit</h3><p>We audit your workflow and identify where AI saves 10-20+ hours per week. Prioritised roadmap.</p><div class="t">One-Time Deliverable</div></div>
+    <div class="pm-card rv">
+      <div class="ic">📞</div>
+      <h3>AI Phone Agent</h3>
+      <p>Answers missed calls with a real AI voice. Captures caller details, books appointments, answers FAQs.</p>
+      <div class="t">Powered by Vapi + Twilio</div>
+      <ul class="agent-tasks">
+        <li>Picks up missed calls within 2 rings</li>
+        <li>Captures caller name, contact, and treatment interest in real time</li>
+        <li>Books appointments directly into Cliniko</li>
+        <li>Answers common FAQs (hours, location, treatment types)</li>
+        <li>Sends transcript + summary to Telegram after every call</li>
+        <li>Forwards complex queries to your mobile when needed</li>
+      </ul>
+      <p class="agent-impact">Recover the bookings your front desk can't pick up.</p>
+    </div>
+
+    <div class="pm-card rv">
+      <div class="ic">💬</div>
+      <h3>SMS Follow-up</h3>
+      <p>Automated AI text messages to follow up leads. Personalised, natural conversations that book appointments.</p>
+      <div class="t">Twilio Integration</div>
+      <ul class="agent-tasks">
+        <li>Sends personalised SMS based on lead source and treatment interest</li>
+        <li>Drip sequence with up to 3 follow-ups over 7 days</li>
+        <li>Replies route to your Telegram for one-tap response</li>
+        <li>Tracks opens, replies, and bookings per campaign</li>
+        <li>Auto-stops the moment a lead books a consultation</li>
+        <li>Honours opt-out requests and Australian SPAM Act consent rules</li>
+      </ul>
+      <p class="agent-impact">SMS gets a 98% open rate. Most clinics ignore it — you won't.</p>
+    </div>
+
+    <div class="pm-card rv">
+      <div class="ic">📱</div>
+      <h3>Social Media Agent</h3>
+      <p>Auto-posts to Instagram, Facebook, TikTok. Responds to DMs with AI. Turns engagement into bookings.</p>
+      <div class="t">Multi-Platform</div>
+      <ul class="agent-tasks">
+        <li>Drafts and posts treatment content to Instagram, Facebook, TikTok</li>
+        <li>Responds to DMs in your clinic voice within seconds</li>
+        <li>Qualifies social leads with smart treatment-specific questions</li>
+        <li>Routes serious enquiries straight to your Telegram</li>
+        <li>Tracks which posts and DMs convert to bookings</li>
+        <li>You approve every post before it goes live</li>
+      </ul>
+      <p class="agent-impact">Turn likes into leads. Turn DMs into deposits.</p>
+    </div>
+
+    <div class="pm-card rv">
+      <div class="ic">🔄</div>
+      <h3>Lead Reactivation</h3>
+      <p>Revives dead leads. AI contacts old enquiries via email and SMS. Clinics recover 5-15% of lost leads.</p>
+      <div class="t">Revenue Recovery Engine</div>
+      <ul class="agent-tasks">
+        <li>Pulls every cold lead from your CRM (last 6–24 months)</li>
+        <li>Drafts personalised reactivation emails and SMS messages</li>
+        <li>Sends only after your one-tap approval in Telegram</li>
+        <li>Offers a consultation slot or seasonal incentive based on history</li>
+        <li>Tracks conversions back to the original lead source</li>
+        <li>Repeats quarterly to keep your back-catalogue warm</li>
+      </ul>
+      <p class="agent-impact">Most clinics have $50K+ in dead leads. We turn 1 in 10 back into a patient.</p>
+    </div>
+
+    <div class="pm-card rv">
+      <div class="ic">📈</div>
+      <h3>Ads &amp; SEO Agent</h3>
+      <p>Monitors Google Ads performance, adjusts bids, tracks rankings. Weekly reports to Telegram.</p>
+      <div class="t">Google Ads API</div>
+      <ul class="agent-tasks">
+        <li>Monitors Google Ads performance and pacing daily</li>
+        <li>Flags underperforming campaigns and wasted spend</li>
+        <li>Tracks keyword rankings for treatments and Melbourne suburbs</li>
+        <li>Watches landing-page health (load time, broken links)</li>
+        <li>Sends weekly performance summary to Telegram</li>
+        <li>Recommends budget shifts based on conversion data</li>
+      </ul>
+      <p class="agent-impact">Stop paying agencies $1,500/month for a slide deck. Get the data direct.</p>
+    </div>
+
+    <div class="pm-card rv">
+      <div class="ic">🧠</div>
+      <h3>AI Operations Audit</h3>
+      <p>We audit your workflow and identify where AI saves 10–20+ hours per week. Prioritised roadmap.</p>
+      <div class="t">One-Time Deliverable</div>
+      <ul class="agent-tasks">
+        <li>Reviews your booking system, CRM, email flow, and team workflows</li>
+        <li>Identifies tasks that AI can fully automate vs assist</li>
+        <li>Quantifies time saved per task per week</li>
+        <li>Delivers prioritised AI roadmap (quick wins first)</li>
+        <li>Includes ROI projection for each agent</li>
+        <li>One-time deliverable — no ongoing fees</li>
+      </ul>
+      <p class="agent-impact">Know exactly which agents will pay for themselves first.</p>
+    </div>
   </div>
 </section>
 
@@ -484,7 +573,7 @@ document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
 </script>
 
 <script>
-document.querySelectorAll('.ag-card').forEach(function(card) {
+document.querySelectorAll('.ag-card, .pm-card').forEach(function(card) {
   var tasks = card.querySelector('.agent-tasks');
   var impact = card.querySelector('.agent-impact');
   if (!tasks && !impact) return;
@@ -495,7 +584,7 @@ document.querySelectorAll('.ag-card').forEach(function(card) {
   card.appendChild(btn);
   btn.addEventListener('click', function() {
     var isOpen = card.classList.contains('expanded');
-    document.querySelectorAll('.ag-card.expanded').forEach(function(c) {
+    document.querySelectorAll('.ag-card.expanded, .pm-card.expanded').forEach(function(c) {
       c.classList.remove('expanded');
       var b = c.querySelector('.agent-toggle');
       if (b) b.textContent = 'See what it does ↓';
