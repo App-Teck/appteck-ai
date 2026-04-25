@@ -81,14 +81,16 @@ nav{position:fixed;top:var(--banner-h,0);left:0;right:0;z-index:100;padding:1.2r
 .pr-card:hover{transform:translateY(-4px)}
 .pr-card.ft:hover{transform:scale(1.02) translateY(-4px)}
 .pr-tier{font-size:.85rem;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem}
-.pr-amt{font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:900;color:#f0f6ff;margin-bottom:.3rem}
-.pr-amt span{font-size:.95rem;font-weight:400;color:#6b7085}
+.pr-amt{display:inline-flex;align-items:center;gap:6px;background:rgba(0,232,130,0.08);border:1px solid rgba(0,232,130,0.2);color:var(--green);font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:100px;margin:16px 0 28px;font-family:'Space Grotesk',sans-serif}
 .pr-feat{list-style:none;margin:1.5rem 0 2rem}
 .pr-feat li{padding:.45rem 0;font-size:.88rem;color:#c8cce0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:.5rem}
 .pr-feat li::before{content:'✓';color:var(--green);font-weight:700;font-size:.8rem}
 .pr-feat li.hl{color:var(--gold)}
 .pr-feat li.hl::before{content:'★'}
-.pr-setup{font-size:.8rem;color:#6b7085;margin-bottom:1.5rem}
+.pr-setup-label{font-size:.78rem;color:#6b8aaa;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.pr-setup{font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:800;line-height:1;letter-spacing:-1px;color:var(--green);margin-bottom:4px}
+.pr-nolock{font-size:.75rem;color:#6b8aaa;margin-bottom:28px;display:flex;align-items:center;gap:6px}
+.pr-nolock::before{content:'✓';color:var(--green);font-weight:700}
 .pr-cta{display:block;text-align:center;padding:.9rem;border-radius:8px;font-weight:600;text-decoration:none;transition:all .3s}
 .pr-cta.p{background:var(--gold);color:#060c16}
 .pr-cta.p:hover{background:#0052cc}
@@ -143,10 +145,10 @@ body.banner-dismissed{--banner-h:0px}
 .price-old{text-decoration:line-through;opacity:.45;font-size:.75em;margin-right:6px}
 .price-new{color:#00c896;font-weight:700}
 .setup-free{color:#00c896;font-weight:700}
-.pr-amt .price-old{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:400;color:#6b7085;text-decoration:line-through;opacity:.55;margin-right:.5rem;letter-spacing:-.3px;vertical-align:middle}
-.pr-amt .price-new{font-family:'Space Grotesk',sans-serif;font-size:2.8rem;font-weight:900;color:#00c896;letter-spacing:-1px;vertical-align:middle}
-.pr-setup .price-old{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:400;text-decoration:line-through;opacity:.55;color:#6b7085;letter-spacing:-.3px;margin-right:.3rem;vertical-align:middle}
-.pr-setup .setup-free{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:900;color:#00c896;letter-spacing:-.5px;margin-right:.3rem;vertical-align:middle}
+.pr-amt .price-old{font-family:inherit;font-size:.75em;font-weight:400;color:inherit;text-decoration:line-through;opacity:.6;margin-right:6px;letter-spacing:0;vertical-align:baseline}
+.pr-amt .price-new{font-family:inherit;font-size:1em;font-weight:700;color:var(--green);letter-spacing:0;vertical-align:baseline}
+.pr-setup .price-old{font-family:inherit;font-size:.75em;font-weight:400;color:inherit;text-decoration:line-through;opacity:.45;margin-right:6px;letter-spacing:-.5px;vertical-align:baseline}
+.pr-setup .setup-free{font-family:inherit;font-size:1em;font-weight:800;color:var(--green);letter-spacing:-1px;vertical-align:baseline}
 .agent-toggle{background:none;border:none;color:var(--accent,var(--gold,#0066ff));font-size:.82em;cursor:pointer;padding:8px 0 0 0;display:block;width:100%;text-align:left;opacity:.8;font-family:inherit}
 .agent-toggle:hover{opacity:1}
 @keyframes fu{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
@@ -519,7 +521,10 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
   <div class="pr-grid">
     <div class="pr-card ft rv">
       <div class="pr-tier">Standard</div>
-      <div class="pr-amt"><span class="price-old">$1,000</span><span class="price-new">$500</span><span>/month</span></div>
+      <div class="pr-setup-label">Setup Fee</div>
+      <div class="pr-setup"><span class="price-old">$2,500</span><span class="setup-free">$0</span></div>
+      <div class="pr-amt"><span class="price-old">$1,000</span><span class="price-new">$500</span> / month</div>
+      <div class="pr-nolock">No lock-in — cancel anytime</div>
       <ul class="pr-feat">
         <li>AI Chat Bot on website</li>
         <li>Lead Alert + scoring</li>
@@ -531,12 +536,14 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
         <li>Voice note control</li>
         <li>APPROVE / SKIP / EDIT from phone</li>
       </ul>
-      <div class="pr-setup"><span class="price-old">$2,500</span><span class="setup-free">$0</span> one-time setup</div>
       <a href="#book" class="pr-cta p">Book a Call</a>
     </div>
     <div class="pr-card rv">
       <div class="pr-tier">Premium</div>
-      <div class="pr-amt"><span class="price-old">$2,000</span><span class="price-new">$1,000</span><span>/month</span></div>
+      <div class="pr-setup-label">Setup Fee</div>
+      <div class="pr-setup"><span class="price-old">$4,000</span><span class="setup-free">$0</span></div>
+      <div class="pr-amt"><span class="price-old">$2,000</span><span class="price-new">$1,000</span> / month</div>
+      <div class="pr-nolock">No lock-in — cancel anytime</div>
       <ul class="pr-feat">
         <li class="hl">Everything in Standard, plus:</li>
         <li>AI Phone Agent (voice calls)</li>
@@ -546,7 +553,6 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
         <li>Ads & SEO monitoring</li>
         <li>Priority support</li>
       </ul>
-      <div class="pr-setup"><span class="price-old">$4,000</span><span class="setup-free">$0</span> one-time setup</div>
       <a href="#book" class="pr-cta o">Get Started</a>
     </div>
   </div>
