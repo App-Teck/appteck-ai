@@ -538,5 +538,30 @@
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/form.js" defer></script>
 <script src="assets/js/chat.js" defer></script>
+
+<script>
+document.querySelectorAll('.agent-card').forEach(function(card) {
+  var tasks = card.querySelector('.agent-tasks');
+  var impact = card.querySelector('.agent-impact');
+  if (!tasks && !impact) return;
+  var btn = document.createElement('button');
+  btn.className = 'agent-toggle';
+  btn.type = 'button';
+  btn.textContent = 'See what it does ↓';
+  card.appendChild(btn);
+  btn.addEventListener('click', function() {
+    var isOpen = card.classList.contains('expanded');
+    document.querySelectorAll('.agent-card.expanded').forEach(function(c) {
+      c.classList.remove('expanded');
+      var b = c.querySelector('.agent-toggle');
+      if (b) b.textContent = 'See what it does ↓';
+    });
+    if (!isOpen) {
+      card.classList.add('expanded');
+      btn.textContent = 'Show less ↑';
+    }
+  });
+});
+</script>
 </body>
 </html>

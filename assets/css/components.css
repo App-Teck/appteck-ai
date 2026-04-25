@@ -443,6 +443,30 @@
 .agent-tasks li { margin-bottom: 4px; line-height: 1.5; }
 .agent-impact { font-style: italic; opacity: 0.7; margin-top: 10px; font-size: 0.9em; }
 
+/* ── AGENT CARD ACCORDION ── */
+.agent-tasks, .agent-impact {
+  display: none;
+  margin-top: 8px;
+}
+.agent-card.expanded .agent-tasks,
+.agent-card.expanded .agent-impact {
+  display: block;
+}
+.agent-toggle {
+  background: none;
+  border: none;
+  color: var(--accent, var(--blue, #0066ff));
+  font-size: 0.82em;
+  cursor: pointer;
+  padding: 8px 0 0 0;
+  display: block;
+  width: 100%;
+  text-align: left;
+  opacity: 0.8;
+  font-family: inherit;
+}
+.agent-toggle:hover { opacity: 1; }
+
 /* ── PROBLEM SECTION ── */
 .problem-grid {
   display: grid;

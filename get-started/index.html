@@ -133,6 +133,10 @@ body.banner-dismissed{--banner-h:0px}
 .agent-tasks{font-size:.85em;opacity:.85;margin-top:8px;padding-left:16px}
 .agent-tasks li{margin-bottom:.25rem;line-height:1.5}
 .agent-impact{font-style:italic;opacity:.7;margin-top:10px;font-size:.9em}
+.agent-tasks,.agent-impact{display:none;margin-top:8px}
+.ag-card.expanded .agent-tasks,.ag-card.expanded .agent-impact{display:block}
+.agent-toggle{background:none;border:none;color:var(--accent,var(--gold,#c9a96e));font-size:.82em;cursor:pointer;padding:8px 0 0 0;display:block;width:100%;text-align:left;opacity:.8;font-family:inherit}
+.agent-toggle:hover{opacity:1}
 @keyframes fu{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
 .rv{opacity:0;transform:translateY(25px);transition:all .7s ease}
 .rv.vis{opacity:1;transform:translateY(0)}
@@ -477,6 +481,31 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
 <script>
 const obs=new IntersectionObserver(e=>{e.forEach((el,i)=>{if(el.isIntersecting){setTimeout(()=>el.target.classList.add('vis'),i*60);obs.unobserve(el.target)}})},{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+
+<script>
+document.querySelectorAll('.ag-card').forEach(function(card) {
+  var tasks = card.querySelector('.agent-tasks');
+  var impact = card.querySelector('.agent-impact');
+  if (!tasks && !impact) return;
+  var btn = document.createElement('button');
+  btn.className = 'agent-toggle';
+  btn.type = 'button';
+  btn.textContent = 'See what it does ↓';
+  card.appendChild(btn);
+  btn.addEventListener('click', function() {
+    var isOpen = card.classList.contains('expanded');
+    document.querySelectorAll('.ag-card.expanded').forEach(function(c) {
+      c.classList.remove('expanded');
+      var b = c.querySelector('.agent-toggle');
+      if (b) b.textContent = 'See what it does ↓';
+    });
+    if (!isOpen) {
+      card.classList.add('expanded');
+      btn.textContent = 'Show less ↑';
+    }
+  });
+});
 </script>
 </body>
 </html>
