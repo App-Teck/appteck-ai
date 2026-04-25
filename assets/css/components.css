@@ -452,8 +452,8 @@
 .agent-card.expanded .agent-impact {
   display: block;
 }
-.agent-card > p:not(.agent-headline):not(.agent-impact) { display: none; }
-.agent-card.expanded > p:not(.agent-headline):not(.agent-impact) { display: block; }
+.agent-card .agent-desc { display: none; }
+.agent-card.expanded .agent-desc { display: block; }
 .agent-toggle {
   background: none;
   border: none;
