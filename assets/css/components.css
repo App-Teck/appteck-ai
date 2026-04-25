@@ -454,6 +454,33 @@
 }
 .agent-card .agent-desc { display: none; }
 .agent-card.expanded .agent-desc { display: block; }
+
+/* ── PRICING URGENCY + STRIKETHROUGH ── */
+.pricing-urgency {
+  text-align: center;
+  background: rgba(220, 60, 60, 0.15);
+  border: 1px solid rgba(220, 60, 60, 0.4);
+  color: #ff6b6b;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9em;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.price-old {
+  text-decoration: line-through;
+  opacity: 0.45;
+  font-size: 0.75em;
+  margin-right: 6px;
+}
+.price-new {
+  color: #00c896;
+  font-weight: 700;
+}
+.setup-free {
+  color: #00c896;
+  font-weight: 700;
+}
 .agent-toggle {
   background: none;
   border: none;

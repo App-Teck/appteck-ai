@@ -137,6 +137,10 @@ body.banner-dismissed{--banner-h:0px}
 .ag-card.expanded .agent-tasks,.ag-card.expanded .agent-impact,.pm-card.expanded .agent-tasks,.pm-card.expanded .agent-impact{display:block}
 .ag-card > p:not(.agent-headline):not(.agent-impact){display:none}
 .ag-card.expanded > p:not(.agent-headline):not(.agent-impact){display:block}
+.pricing-urgency{text-align:center;background:rgba(220,60,60,0.15);border:1px solid rgba(220,60,60,0.4);color:#ff6b6b;padding:10px 20px;border-radius:8px;font-size:.9em;font-weight:600;margin-bottom:24px;max-width:900px;margin-left:auto;margin-right:auto}
+.price-old{text-decoration:line-through;opacity:.45;font-size:.75em;margin-right:6px}
+.price-new{color:#00c896;font-weight:700}
+.setup-free{color:#00c896;font-weight:700}
 .agent-toggle{background:none;border:none;color:var(--accent,var(--gold,#c9a96e));font-size:.82em;cursor:pointer;padding:8px 0 0 0;display:block;width:100%;text-align:left;opacity:.8;font-family:inherit}
 .agent-toggle:hover{opacity:1}
 @keyframes fu{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
@@ -505,10 +509,11 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
 <section class="sec sec-alt" id="pricing">
   <div class="stag rv">Pricing</div>
   <h2 class="stitle rv">Simple. Transparent.<br>Results-Driven.</h2>
+  <div class="pricing-urgency rv">🔥 Limited Launch Offer — $0 setup + 50% off monthly. Ends 10 May 2026.</div>
   <div class="pr-grid">
     <div class="pr-card ft rv">
       <div class="pr-tier">Standard</div>
-      <div class="pr-amt">$1,000<span>/month</span></div>
+      <div class="pr-amt"><span class="price-old">$1,000</span><span class="price-new">$500</span><span>/month</span></div>
       <ul class="pr-feat">
         <li>AI Chat Bot on website</li>
         <li>Lead Alert + scoring</li>
@@ -520,12 +525,12 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
         <li>Voice note control</li>
         <li>APPROVE / SKIP / EDIT from phone</li>
       </ul>
-      <div class="pr-setup">$2,500 one-time setup</div>
+      <div class="pr-setup"><span class="price-old">$2,500</span><span class="setup-free">$0</span> one-time setup</div>
       <a href="#book" class="pr-cta p">Book a Call</a>
     </div>
     <div class="pr-card rv">
       <div class="pr-tier">Premium</div>
-      <div class="pr-amt">$2,000<span>/month</span></div>
+      <div class="pr-amt"><span class="price-old">$2,000</span><span class="price-new">$1,000</span><span>/month</span></div>
       <ul class="pr-feat">
         <li class="hl">Everything in Standard, plus:</li>
         <li>AI Phone Agent (voice calls)</li>
@@ -535,7 +540,7 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
         <li>Ads & SEO monitoring</li>
         <li>Priority support</li>
       </ul>
-      <div class="pr-setup">$4,000 one-time setup</div>
+      <div class="pr-setup"><span class="price-old">$4,000</span><span class="setup-free">$0</span> one-time setup</div>
       <a href="#book" class="pr-cta o">Get Started</a>
     </div>
   </div>
