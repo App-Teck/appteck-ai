@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AppTeck.ai — Your AI Workforce</title>
+<title>AppTeck.ai — AI Automation for Aesthetic Clinics | Cliniko Integration</title>
+<meta name="description" content="AI agents built for injectable clinics and med aesthetic practices. Connects to Cliniko, Pabau, Nookal. Capture every lead, automate follow-ups, manage bookings — all from Telegram.">
 <meta name="robots" content="noindex,follow">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -11,16 +12,16 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{background:#0a0c14;color:#e8e8f0;font-family:'Outfit',sans-serif;overflow-x:hidden;scroll-behavior:smooth}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,12,20,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,0.1)}
+nav{position:fixed;top:var(--banner-h,0);left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,12,20,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,169,110,0.1);transition:top .2s}
 .logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gold);text-decoration:none}
 .nav-r{display:flex;gap:2rem;align-items:center}
 .nav-r a{color:#8b90a8;text-decoration:none;font-size:.9rem}
 .nav-r a:hover{color:var(--gold)}
 .nav-btn{background:var(--gold);color:#0a0c14;padding:.6rem 1.4rem;border-radius:6px;font-weight:600;font-size:.85rem;text-decoration:none}
 
-.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem;background:#0a0c14;position:relative}
+.hero{min-height:100vh;display:flex;align-items:center;padding:calc(8rem + var(--banner-h,0)) 3rem 4rem;background:#0a0c14;position:relative}
 .hero-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,0.06)0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
-.hero-container{max-width:1200px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:flex-start;gap:6rem;position:relative;z-index:1}
+.hero-container{max-width:1200px;width:100%;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:6rem;position:relative;z-index:1}
 .hero-inner{max-width:650px;flex:0 1 650px}
 .hero-tag{display:inline-block;color:var(--gold);font-size:.8rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:1.5rem;border:1px solid rgba(201,169,110,0.4);padding:.4rem 1rem;border-radius:20px;opacity:0;animation:fu .7s .2s forwards}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5.5vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;color:#f0f0f5;opacity:0;animation:fu .7s .4s forwards}
@@ -98,6 +99,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:
 .res-card h3{font-size:.95rem;font-weight:600;color:#e0e0e8;margin-bottom:.3rem}
 .res-card p{font-size:.82rem;color:#6b7085}
 
+.intro-line{font-size:1.05rem;color:#a0a4b8;line-height:1.7;max-width:720px;margin-bottom:3rem}
+.int-wrap{max-width:1100px;display:flex;flex-direction:column;gap:2.2rem}
+.int-group{display:flex;flex-direction:column;gap:.9rem}
+.int-label{font-size:.72rem;color:#8b90a8;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.int-pills{display:flex;flex-wrap:wrap;gap:.7rem}
+.int-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:999px;padding:.7rem 1.2rem;font-size:.9rem;color:#c8cce0;transition:all .3s}
+.int-pill:hover{transform:translateY(-2px);border-color:rgba(201,169,110,.25)}
+.int-pill.hl{background:rgba(201,169,110,.08);border-color:var(--gold);color:var(--gold);font-weight:600}
+.int-pill .badge{font-size:.65rem;background:var(--gold);color:#0a0c14;padding:.15rem .5rem;border-radius:999px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
 .cta-sec{padding:7rem 3rem;text-align:center;background:#0a0c14}
 .cta-sec h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;color:#f0f0f5;margin-bottom:1.5rem}
 .cta-sec>p{font-size:1.1rem;color:#a0a4b8;margin-bottom:3rem}
@@ -109,11 +119,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:
 footer{padding:2rem 3rem;text-align:center;font-size:.8rem;color:#6b7085;border-top:1px solid rgba(255,255,255,.04);background:#0a0c14}
 footer .ft{font-family:'Playfair Display',serif;color:var(--gold);font-size:.9rem;margin-bottom:.5rem}
 
+.urg-banner{position:fixed;top:0;left:0;right:0;z-index:101;background:#9a2a2a;color:#fff;text-align:center;padding:.7rem 3rem;font-size:.85rem;font-weight:500;border-bottom:1px solid rgba(255,255,255,.12);letter-spacing:.2px}
+.urg-banner strong{color:#ffd1d1;font-weight:700}
+.urg-banner .urg-x{position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:transparent;border:0;color:#fff;cursor:pointer;font-size:1.3rem;opacity:.75;padding:.2rem .5rem;line-height:1}
+.urg-banner .urg-x:hover{opacity:1}
+.urg-banner.hide{display:none}
+body{--banner-h:38px}
+body.banner-dismissed{--banner-h:0px}
+.hero-tagline{flex-basis:100%;color:#7b8095;font-size:.9rem;font-style:italic;margin-top:1rem;text-align:left;opacity:0;animation:fu .7s 1.2s forwards}
+.trust-line{margin-top:1.2rem;font-size:.78rem;color:#8b90a8;font-style:italic;letter-spacing:.3px}
+.int-pill.hl{padding:.85rem 1.5rem;font-size:.98rem}
+.agent-headline{font-weight:600;color:#f0f0f5;font-size:.9rem;margin-bottom:.5rem;line-height:1.4}
+.agent-tasks{font-size:.85em;opacity:.85;margin-top:8px;padding-left:16px}
+.agent-tasks li{margin-bottom:.25rem;line-height:1.5}
+.agent-impact{font-style:italic;opacity:.7;margin-top:10px;font-size:.9em}
 @keyframes fu{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
 .rv{opacity:0;transform:translateY(25px);transition:all .7s ease}
 .rv.vis{opacity:1;transform:translateY(0)}
 
-@media(max-width:1024px){.hero-container{flex-direction:column;align-items:flex-start;gap:3rem}.hero-stats{flex-direction:row;gap:2.5rem;align-self:stretch;justify-content:flex-start;flex-wrap:wrap}.h-stat .l{text-align:left}.ag-grid,.pm-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1024px){.hero-container{flex-direction:column;align-items:flex-start;gap:3rem}.hero-stats{flex-direction:row;gap:2.5rem;align-self:stretch;justify-content:flex-start;flex-wrap:wrap}.h-stat .l{text-align:left}.ag-grid,.pm-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}.int-wrap{max-width:100%}}
 @media(max-width:768px){nav{padding:1rem 1.5rem}.nav-r a:not(.nav-btn){display:none}.hero,.sec,.cta-sec{padding:5rem 1.5rem}.prob-grid,.pr-grid,.res-grid,.ag-grid,.pm-grid,.steps{grid-template-columns:1fr}.pr-card.ft{transform:none}.hero-btns{flex-direction:column}.hero-stats{gap:1.5rem}.h-stat .n{font-size:2.4rem}}
 </style>
 
@@ -137,6 +161,11 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
 </head>
 <body>
 
+<div class="urg-banner" id="urgBanner" role="status">
+  <span>We only onboard <strong>4 new clinics per month</strong> — 2 spots remaining for May</span>
+  <button class="urg-x" type="button" aria-label="Dismiss" onclick="document.getElementById('urgBanner').classList.add('hide');document.body.classList.add('banner-dismissed');">×</button>
+</div>
+
 <nav>
   <a href="/" class="logo">APPTECK.AI</a>
   <div class="nav-r">
@@ -151,9 +180,9 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
   <div class="hero-glow"></div>
   <div class="hero-container">
     <div class="hero-inner">
-      <div class="hero-tag">AI Automation Agency — Melbourne</div>
-      <h1>Your Business<br>Deserves an<br><em>AI Workforce</em></h1>
-      <p>8 AI agents working 24/7 — answering your visitors, capturing every lead, drafting every email, tracking every booking. While you sleep.</p>
+      <div class="hero-tag">AI for Aesthetic Clinics — Melbourne</div>
+      <h1>The AI Workforce<br>Built for<br><em>Aesthetic Clinics</em></h1>
+      <p>8 AI agents built for aesthetic clinics — answering enquiries, capturing leads, managing bookings in Cliniko, drafting patient emails, and chasing follow-ups. All from your phone. While you treat.</p>
       <div class="hero-btns">
         <a href="#book" class="btn-p">Book a Free Discovery Call</a>
         <a href="#agents" class="btn-s">See the Agents</a>
@@ -164,6 +193,7 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
       <div class="h-stat"><div class="n">24/7</div><div class="l">Always On</div></div>
       <div class="h-stat"><div class="n">&lt;5s</div><div class="l">Response Time</div></div>
     </div>
+    <p class="hero-tagline">Specialists in injectable clinics, cosmetic surgery practices, and med spas across Melbourne and Victoria.</p>
   </div>
 </section>
 
@@ -171,9 +201,52 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
   <div class="stag rv">The Problem</div>
   <h2 class="stitle rv">Your Business Is Leaking<br>Revenue Every Day</h2>
   <div class="prob-grid">
-    <div class="prob-card rv"><div class="s">67%</div><h3>of leads never get a response</h3><p>Enquiries come in after hours, on weekends, during busy periods — and nobody follows up.</p></div>
-    <div class="prob-card rv"><div class="s">23hrs</div><h3>average response time</h3><p>By the time you reply, they've already booked with your competitor down the road.</p></div>
-    <div class="prob-card rv"><div class="s">$42K</div><h3>lost per year from missed leads</h3><p>Every unanswered call, ignored email, abandoned chat — that's revenue walking out the door.</p></div>
+    <div class="prob-card rv"><div class="s">67%</div><h3>of leads never get a response</h3><p>Enquiries come in after hours, on weekends, during busy periods — and your front desk isn't there.</p></div>
+    <div class="prob-card rv"><div class="s">23hrs</div><h3>average response time</h3><p>By the time you reply, they've already booked at the clinic down the road.</p></div>
+    <div class="prob-card rv"><div class="s">$42K</div><h3>lost per year from missed leads</h3><p>Every unanswered chat, ignored email, abandoned enquiry — that's a consultation fee walking out the door.</p></div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="integrations">
+  <div class="stag rv">Integrations</div>
+  <h2 class="stitle rv">Built Around<br>Your Clinic Software</h2>
+  <p class="intro-line rv">AppTeck connects directly to the tools your clinic already runs on — no ripping out your existing systems.</p>
+  <div class="int-wrap">
+    <div class="int-group rv">
+      <div class="int-label">Booking &amp; Practice Management</div>
+      <div class="int-pills">
+        <span class="int-pill hl">Cliniko<span class="badge">Our Primary Integration</span></span>
+        <span class="int-pill">Pabau</span>
+        <span class="int-pill">Nookal</span>
+        <span class="int-pill">Power Diary</span>
+        <span class="int-pill">Coreplus</span>
+        <span class="int-pill">Halaxy</span>
+      </div>
+    </div>
+    <div class="int-group rv">
+      <div class="int-label">Communications</div>
+      <div class="int-pills">
+        <span class="int-pill">Gmail / Google Workspace</span>
+        <span class="int-pill">Microsoft 365 / Outlook</span>
+        <span class="int-pill">Messenger</span>
+      </div>
+    </div>
+    <div class="int-group rv">
+      <div class="int-label">Website Platforms</div>
+      <div class="int-pills">
+        <span class="int-pill">Webflow</span>
+        <span class="int-pill">Squarespace</span>
+        <span class="int-pill">WordPress</span>
+      </div>
+    </div>
+    <div class="int-group rv">
+      <div class="int-label">Other</div>
+      <div class="int-pills">
+        <span class="int-pill">Cal.com</span>
+        <span class="int-pill">Telegram</span>
+        <span class="int-pill">Twilio (SMS)</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -181,14 +254,132 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
   <div class="stag rv">Standard Tier</div>
   <h2 class="stitle rv">8 AI Agents —<br>Your Core Workforce</h2>
   <div class="ag-grid">
-    <div class="ag-card rv"><span class="ic">🤖</span><h3>AI Receptionist</h3><p>Answers website visitors 24/7, captures leads, qualifies enquiries with smart buttons and forms.</p></div>
-    <div class="ag-card rv"><span class="ic">📩</span><h3>Lead Catcher</h3><p>Every form submission scored, saved, and alerted to your phone in seconds.</p></div>
-    <div class="ag-card rv"><span class="ic">📅</span><h3>Booking Monitor</h3><p>Connects to Cliniko, Cal.com, or your booking system — real-time alerts for every appointment.</p></div>
-    <div class="ag-card rv"><span class="ic">📧</span><h3>Email Assistant</h3><p>Reads your inbox, drafts professional AI replies — you approve, edit, or skip from Telegram.</p></div>
-    <div class="ag-card rv"><span class="ic">🔔</span><h3>Follow-up Chaser</h3><p>Flags leads that haven't been contacted. No enquiry falls through the cracks.</p></div>
-    <div class="ag-card rv"><span class="ic">📊</span><h3>Daily Briefing</h3><p>Morning summary: new leads, bookings, chats, pipeline status — delivered to your phone.</p></div>
-    <div class="ag-card rv"><span class="ic">🌐</span><h3>Site Guardian</h3><p>Monitors your website uptime. If it goes down, you know before your customers do.</p></div>
-    <div class="ag-card rv"><span class="ic">🎙️</span><h3>Voice Control</h3><p>Send a voice note to draft emails, edit replies, manage leads — all hands-free from Telegram.</p></div>
+
+    <div class="ag-card rv">
+      <span class="ic">🤖</span>
+      <h3>AI Receptionist</h3>
+      <p class="agent-headline">Never miss an enquiry — even at 10pm</p>
+      <p>Embedded on your clinic website, the AI Receptionist answers visitor questions 24/7 in your clinic's voice. It handles treatment FAQs, explains your consultation process, and captures lead details when a visitor shows interest. When someone asks about pricing, it presents your enquiry form instead of quoting numbers — protecting your pricing and qualifying the lead at the same time.</p>
+      <ul class="agent-tasks">
+        <li>Answers questions about lip filler, anti-wrinkle, skin treatments, and consultations at any hour</li>
+        <li>Presents a lead capture form when pricing is asked</li>
+        <li>Directs visitors to the right page (treatments, booking, contact)</li>
+        <li>Sends captured lead details to your phone via Telegram instantly</li>
+        <li>Never gives out pricing — always routes to a consultation</li>
+      </ul>
+      <p class="agent-impact">Turns late-night browsers into booked consultations — while you sleep.</p>
+    </div>
+
+    <div class="ag-card rv">
+      <span class="ic">📩</span>
+      <h3>Lead Catcher</h3>
+      <p class="agent-headline">Every enquiry scored, saved, and on your phone in seconds</p>
+      <p>Every time someone fills in a form — website, ad, or booking page — the Lead Catcher captures it, scores it from 1–10 based on treatment type and urgency, saves it to your CRM, and fires an instant Telegram alert to your phone. You see the lead's name, contact, treatment interest, and score before you've even finished your current patient.</p>
+      <ul class="agent-tasks">
+        <li>Receives leads from your website form, Meta ads, and booking pages</li>
+        <li>Scores each lead 1–10 (high scores = ready to book, low scores = nurture)</li>
+        <li>Saves every lead to your CRM with timestamp, source, and status</li>
+        <li>Sends formatted Telegram alert within 3 seconds of submission</li>
+        <li>Tracks lead status through your pipeline (new → contacted → booked → won)</li>
+      </ul>
+      <p class="agent-impact">No lead sits unread for 23 hours. You know about every enquiry instantly.</p>
+    </div>
+
+    <div class="ag-card rv">
+      <span class="ic">📅</span>
+      <h3>Booking Monitor</h3>
+      <p class="agent-headline">Real-time Cliniko alerts — every booking, cancellation, and gap</p>
+      <p>Connected directly to Cliniko (or Pabau, Nookal, Power Diary), the Booking Monitor watches your appointment schedule in real time. New booking? You're notified. Cancellation opens a gap? You're notified with the gap time so you can fill it fast. It also sends a daily schedule briefing each morning so you walk into clinic knowing exactly what the day looks like.</p>
+      <ul class="agent-tasks">
+        <li>Monitors Cliniko, Pabau, Nookal, Power Diary, Halaxy in real time</li>
+        <li>Sends Telegram alert for every new booking with patient name and treatment</li>
+        <li>Alerts you the moment a cancellation creates a gap — with the gap time</li>
+        <li>Sends morning schedule summary at 8am AEST daily</li>
+        <li>Flags no-shows so follow-up can be triggered immediately</li>
+      </ul>
+      <p class="agent-impact">Fill cancellation gaps before they cost you a consultation fee.</p>
+    </div>
+
+    <div class="ag-card rv">
+      <span class="ic">📧</span>
+      <h3>Email Assistant</h3>
+      <p class="agent-headline">Your inbox handled — replies drafted before you finish your coffee</p>
+      <p>The Email Assistant reads your clinic inbox every 15 minutes, identifies emails that need a reply, and uses AI to draft a professional, on-brand response. The draft lands in your Telegram with the original email context. You read it, approve it with one tap, edit it with a voice note, or skip it. The approved email sends immediately — no logging into Gmail required.</p>
+      <ul class="agent-tasks">
+        <li>Reads clinic inbox (Gmail or Microsoft 365) every 15 minutes</li>
+        <li>Identifies patient enquiries, booking requests, and supplier emails</li>
+        <li>Drafts a professional reply using your clinic's tone and service knowledge</li>
+        <li>Sends draft + original email to Telegram for your approval</li>
+        <li>Sends the email the moment you tap APPROVE — from your clinic address</li>
+        <li>Supports APPROVE / SKIP / EDIT commands and voice note edits</li>
+      </ul>
+      <p class="agent-impact">Handle every patient email between appointments — without touching a laptop.</p>
+    </div>
+
+    <div class="ag-card rv">
+      <span class="ic">🔔</span>
+      <h3>Follow-up Chaser</h3>
+      <p class="agent-headline">Enquired but never booked? We chase them for you</p>
+      <p>The Follow-up Chaser monitors every lead in your CRM and flags anyone who enquired but hasn't booked within 24 hours. It drafts a warm, personalised follow-up email and queues it for your approval in Telegram. One tap and it sends. It runs twice daily — catching both morning and afternoon enquiries that went cold — and tracks whether the follow-up converted to a booking.</p>
+      <ul class="agent-tasks">
+        <li>Scans CRM twice daily for leads with no follow-up after 24 hours</li>
+        <li>Drafts personalised follow-up email referencing their specific treatment interest</li>
+        <li>Queues draft in Telegram for one-tap approval</li>
+        <li>Tracks follow-up status and updates CRM when sent</li>
+        <li>Flags leads that still haven't responded after 3 follow-ups for manual review</li>
+        <li>Recovers an average of 15–25% of leads that would otherwise go cold</li>
+      </ul>
+      <p class="agent-impact">Most clinics lose 40% of leads to slow follow-up. This closes that gap.</p>
+    </div>
+
+    <div class="ag-card rv">
+      <span class="ic">📊</span>
+      <h3>Daily Briefing</h3>
+      <p class="agent-headline">Your clinic's morning report — delivered to your phone at 8am</p>
+      <p>Every morning at 8am AEST, the Daily Briefing sends a structured summary to your Telegram. You see exactly where your business stands before you walk through the clinic door — new leads overnight, today's appointments, pending emails, follow-ups due, and revenue metrics for the week. No dashboards, no logins. Just the numbers that matter, where you already are.</p>
+      <ul class="agent-tasks">
+        <li>Sends daily summary at 8am AEST to Telegram</li>
+        <li>Reports: new leads (last 24h), lead pipeline status, conversion rate</li>
+        <li>Reports: today's Cliniko appointments with patient names and treatments</li>
+        <li>Reports: emails waiting for approval, follow-ups due today</li>
+        <li>Reports: weekly enquiry volume and bookings trend</li>
+        <li>Flags anything urgent (overdue follow-ups, site downtime, failed agents)</li>
+      </ul>
+      <p class="agent-impact">Start every day knowing exactly what needs your attention — in 30 seconds.</p>
+    </div>
+
+    <div class="ag-card rv">
+      <span class="ic">🌐</span>
+      <h3>Site Guardian</h3>
+      <p class="agent-headline">If your website goes down, you know before your patients do</p>
+      <p>The Site Guardian pings your clinic website every 5 minutes around the clock. The moment it detects downtime — whether a hosting issue, SSL expiry, or DNS problem — it fires an immediate Telegram alert with the error type and timestamp. When the site recovers, you get a recovery notification with total downtime duration. For a clinic that books online, every minute of downtime is a missed booking.</p>
+      <ul class="agent-tasks">
+        <li>Checks clinic website availability every 5 minutes, 24/7</li>
+        <li>Detects HTTP errors, timeouts, SSL certificate issues, and DNS failures</li>
+        <li>Sends instant Telegram alert with error type and exact downtime start time</li>
+        <li>Sends recovery notification with total downtime duration</li>
+        <li>Logs all downtime events for monthly reporting</li>
+        <li>Monitors multiple URLs (website, booking page, patient portal)</li>
+      </ul>
+      <p class="agent-impact">A clinic that books online can't afford invisible downtime.</p>
+    </div>
+
+    <div class="ag-card rv">
+      <span class="ic">🎙️</span>
+      <h3>Voice Control</h3>
+      <p class="agent-headline">Run your entire AI workforce from a voice note</p>
+      <p>Between patients, in the car, or in the treatment room — Voice Control lets you manage everything with a voice message in Telegram. Send a voice note saying "draft a follow-up for Sarah about her lip filler consult" and the Email Assistant gets to work. Say "what leads came in today" and you get a spoken summary. The entire AI system is controllable with natural language — no typing required.</p>
+      <ul class="agent-tasks">
+        <li>Transcribes voice notes using OpenAI Whisper (accurate medical terminology)</li>
+        <li>Triggers email drafts via voice: "draft a reply to the booking request"</li>
+        <li>Updates lead status via voice: "mark lead 42 as booked"</li>
+        <li>Retrieves pipeline info via voice: "how many leads this week"</li>
+        <li>Edits queued email drafts via voice before sending</li>
+        <li>Supports all APPROVE / SKIP / EDIT / PIPELINE commands by voice or text</li>
+      </ul>
+      <p class="agent-impact">Manage your entire front desk with a 10-second voice message.</p>
+    </div>
+
   </div>
 </section>
 
@@ -210,7 +401,7 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
   <h2 class="stitle rv">Live In Days. Not Months.</h2>
   <div class="steps">
     <div class="step rv"><div class="step-n">01</div><h3>Discovery</h3><p>We learn your business — tools, team, bottlenecks, goals. A 30-minute conversation.</p></div>
-    <div class="step rv"><div class="step-n">02</div><h3>Build</h3><p>We deploy your dedicated AI server, connect your systems, and train the AI on your business.</p></div>
+    <div class="step rv"><div class="step-n">02</div><h3>Build</h3><p>We deploy your dedicated AI server, connect to Cliniko (or your booking system), sync your email, and train the AI on your clinic, your treatments, and your voice.</p></div>
     <div class="step rv"><div class="step-n">03</div><h3>Go Live</h3><p>Agents start working immediately. Chat bot on site, email drafts on phone, booking alerts 24/7.</p></div>
     <div class="step rv"><div class="step-n">04</div><h3>Optimise</h3><p>We monitor, tune, and expand. Your agents get smarter every week.</p></div>
   </div>
@@ -274,11 +465,12 @@ src="https://www.facebook.com/tr?id=1542503004328699&ev=PageView&noscript=1"
     <div class="em">sales@appteck.ai</div>
     <div class="loc">Melbourne, Australia</div>
     <a href="https://cal.com/appteck" target="_blank" class="btn-p" onclick="fbq('track', 'Lead')">Book Your Free Call</a>
+    <div class="trust-line">Trusted by aesthetic clinics in Melbourne. Built for Cliniko.</div>
   </div>
 </section>
 
 <footer>
-  <div class="ft">Your business runs itself. You just approve.</div>
+  <div class="ft">Your clinic runs itself. You just treat.</div>
   <p>&copy; 2026 AppTeck.ai — All rights reserved.</p>
 </footer>
 
